@@ -15,7 +15,7 @@ public class MainFile extends Application{
         //Add an image of the logo
         mainPane.add(imagePane, 0,0);
         GridPane selectPane = new GridPane();
-        mainPane.add(selectPane, 0,1);
+        mainPane.add(selectPane,0,1);
         Button b1 = new Button("Test");
         selectPane.add(b1, 0, 0);
 
