@@ -37,5 +37,7 @@ public class dodgeFallingBalls extends Application {
         dfbStage.setTitle("Dodge Falling Balls");
         dfbStage.setScene(scene);
         dfbStage.show();
+
+        pane.requestFocus();
         }
 }
