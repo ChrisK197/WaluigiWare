@@ -42,7 +42,7 @@ public class MainFile extends Application{
         mainPane.requestFocus();
     }
 
-    public void findGuy(Stage s){
+    private void findGuy(Stage s){
         Pane pane = new Pane();
         Rectangle rect = new Rectangle();
         rect.setFill(Color.BLACK);
