@@ -26,7 +26,7 @@ public class MainFile extends Application{
         mainPane.add(imagePane, 0,0);
         GridPane selectPane = new GridPane();
         mainPane.add(selectPane,0,1);
-        Button b1 = new Button("Test");
+        Button b1 = new Button("Find Waluigi");
         selectPane.add(b1, 0, 0);
         b1.setOnMouseClicked(e -> findGuy(new Stage()));
 
