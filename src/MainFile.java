@@ -85,6 +85,19 @@ public class MainFile extends Application{
             text.setFill(Color.RED);
             text.setFont(Font.font("Comic Sans", 72));
             pane.getChildren().add(text);
+            Button b = new Button("Return to select screen");
+            b.setPrefSize(150, 10);
+            b.layoutXProperty().bind(text.xProperty());
+            b.layoutYProperty().bind(text.yProperty().add(50));
+            b.setOnMouseClicked(f -> s.hide());
+            /*
+            Button b2 = new Button("Play Again");
+            b2.layoutXProperty().bind(text.xProperty());
+            b2.layoutYProperty().bind(text.yProperty().add(60));
+            b2.setOnMouseClicked(f -> findGuy(s));
+            ADD b2
+             */
+            pane.getChildren().addAll(b);
         });
 
 
