@@ -1,57 +1,48 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 public class Memory extends Application {
 
     @Override
     public void start(Stage s){
         GridPane pane = new GridPane();
+        Image wah = new Image("Waluigi.png");
+        Image wah2 = new Image("Waluigi.png");
 
-        Image star = new Image("star.jpg");
-        ImageView cardBack = new ImageView(star);
-        cardBack.fitWidthProperty().bind(pane.widthProperty().divide(2));
-        cardBack.fitHeightProperty().bind(pane.heightProperty().divide(4));
+        Image mario = new Image("mario.jpg");
+        Image mario2 = new Image("mario.jpg");
+
+        Image luigi = new Image("luigi.jpg");
+        Image luigi2 = new Image("luigi.jpg");
+
+        Image wario = new Image("wario.jpg");
+        Image wario2 = new Image("wario.jpg");
+
+        ArrayList<Image> imageList = new ArrayList<>();
+        imageList.add(wah);imageList.add(wah2);imageList.add(mario);imageList.add(mario2);
+        imageList.add(luigi);imageList.add(luigi2);imageList.add(wario);imageList.add(wario2);
+
+        for (int i =0; i < 8; i++) {
+            int use = (int) (Math.random() * imageList.size());
+            CardClass c1 = new CardClass(imageList.get(use));
+            c1.getCard().fitWidthProperty().bind(pane.widthProperty().divide(2));
+            c1.getCard().fitHeightProperty().bind(pane.heightProperty().divide(4));
+            imageList.remove(use);
+            pane.add(c1.getCard(), i % 2, i/2);
+
+        }
+
 
 
         pane.setGridLinesVisible(true);
         pane.setHgap(2);
         pane.setVgap(2);
 
-        ImageView c2 = new ImageView(star);
-        c2.fitWidthProperty().bind(pane.widthProperty().divide(2));
-        c2.fitHeightProperty().bind(pane.heightProperty().divide(4));
-
-        ImageView c3 = new ImageView(star);
-        c3.fitWidthProperty().bind(pane.widthProperty().divide(2));
-        c3.fitHeightProperty().bind(pane.heightProperty().divide(4));
-
-        ImageView c4 = new ImageView(star);
-        c4.fitWidthProperty().bind(pane.widthProperty().divide(2));
-        c4.fitHeightProperty().bind(pane.heightProperty().divide(4));
-
-        ImageView c5 = new ImageView(star);
-        c5.fitWidthProperty().bind(pane.widthProperty().divide(2));
-        c5.fitHeightProperty().bind(pane.heightProperty().divide(4));
-
-        ImageView c6 = new ImageView(star);
-        c6.fitWidthProperty().bind(pane.widthProperty().divide(2));
-        c6.fitHeightProperty().bind(pane.heightProperty().divide(4));
-
-        ImageView c7 = new ImageView(star);
-        c7.fitWidthProperty().bind(pane.widthProperty().divide(2));
-        c7.fitHeightProperty().bind(pane.heightProperty().divide(4));
-
-        ImageView c8 = new ImageView(star);
-        c8.fitWidthProperty().bind(pane.widthProperty().divide(2));
-        c8.fitHeightProperty().bind(pane.heightProperty().divide(4));
-
-        pane.addColumn(0, cardBack, c2, c3, c4);
-        pane.addColumn(1, c5, c6, c7, c8);
 
 
 
