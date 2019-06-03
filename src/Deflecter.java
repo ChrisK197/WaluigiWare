@@ -14,6 +14,8 @@ import javafx.util.Duration;
 public class Deflecter extends Application {
     protected Pane p = new Pane();
     protected Timeline animation;
+    protected int dx = (int)((Math.random()*49)+10);
+    protected int dy = (int)((Math.random()*49)+10);
 
 
     public void start (Stage ps) {
@@ -32,17 +34,13 @@ public class Deflecter extends Application {
         imageView.xProperty().bind(p.widthProperty().divide(2).subtract(waluigi.getWidth()/2));
         imageView.yProperty().bind(p.heightProperty().divide(2).subtract(waluigi.getHeight()/2));
 
-        //for (int i=0; i<5; i++) {
-            Circle circle = new Circle(75);
-            circle.setCenterX(75);
-            circle.setCenterY(75);
-            circle.setFill(Color.BLACK);
-            p.getChildren().add(circle);
-            animation = new Timeline(new KeyFrame(Duration.millis(50), e -> moveBall(5, 5, circle)));
-            if (handleCollision(circle, shield) == true) {
-                circle.setFill(Color.RED);
-            }
-        //}
+        Circle circle = new Circle(50);
+        circle.setCenterX(75);
+        circle.setCenterY(75);
+        circle.setFill(Color.BLACK);
+        p.getChildren().add(circle);
+        animation = new Timeline(new KeyFrame(Duration.millis(50), e -> moveBall(circle)));
+        handleCollision(circle, shield);
 
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.play();
@@ -53,14 +51,19 @@ public class Deflecter extends Application {
         ps.show();
     }
 
-    private boolean handleCollision(Circle c1, Circle c2) {
-        if (c1 != c2) {
-            return true;
+    protected void handleCollision(Circle c1, Circle c2) {
+        if (Math.pow(c1.getCenterX()-c2.getCenterX(), 2) + Math.pow(c1.getCenterY()-c2.getCenterY(), 2) < Math.pow(c1.getRadius()+c2.getRadius(), 2)) {
+            System.out.println(Math.pow(c1.getCenterX()-c2.getCenterX(), 2));
+            System.out.println(Math.pow(c1.getCenterY()-c2.getCenterY(), 2));
+            System.out.println(Math.pow(c1.getRadius()+c2.getRadius(), 2));
+            c1.setFill(Color.RED);
         }
-        return false;
+        else {
+            c1.setFill(Color.BLACK);
+        }
     }
 
-    protected void moveBall(int dx, int dy, Circle c) {
+    protected void moveBall(Circle c) {
         if (c.getCenterX()<c.getRadius() || c.getCenterX()>p.getWidth() - c.getRadius()) {
             dx *= -1;
         }
