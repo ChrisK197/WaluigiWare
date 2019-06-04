@@ -8,10 +8,12 @@ public class CardClass {
     private Image front;
     private boolean faceUp = false;
     private boolean rectIn = false;
+    private String code;
 
 
-    public CardClass(Image front){
+    public CardClass(Image front, String code){
         this.front = front;
+        this.code = code;
         //card.setOnMouseClicked(e ->{
           //  card.setImage(front);
             //faceUp = true;
@@ -21,7 +23,7 @@ public class CardClass {
     }
 
     public boolean sameCard(CardClass x){
-        return this.front == x.front;
+        return this.code.equals(x.code);
 
     }
 
@@ -36,6 +38,10 @@ public class CardClass {
 
     public boolean bothUp(CardClass c){
         return this.isFaceUp() && c.isFaceUp();
+    }
+
+    public void inactive(){
+        card.setOnMouseClicked(e ->{});
     }
 
 
