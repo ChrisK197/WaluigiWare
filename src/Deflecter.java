@@ -14,13 +14,13 @@ import javafx.util.Duration;
 public class Deflecter extends Application {
     protected Pane p = new Pane();
     protected Timeline animation;
-    protected int dx = (int)((Math.random()*49)+10);
-    protected int dy = (int)((Math.random()*49)+10);
-
+    protected int dx = 5;
+    protected int dy = 5;
+    protected Circle shield = new Circle(150);
+    //protected Circle shield = new Circle(500, 500, 150);
+    protected Circle circle = new Circle(50);
 
     public void start (Stage ps) {
-
-        Circle shield = new Circle(150);
         shield.centerXProperty().bind(p.widthProperty().divide(2).add(10));
         shield.centerYProperty().bind(p.heightProperty().divide(2));
         shield.setStroke(Color.RED);
@@ -31,16 +31,51 @@ public class Deflecter extends Application {
         Image waluigi = new Image("Waluigi.png");
         ImageView imageView = new ImageView(waluigi);
         p.getChildren().add(imageView);
+        //imageView.xProperty().set(500-(waluigi.getWidth()/2));
+        //imageView.yProperty().set(500-(waluigi.getHeight()/2));
         imageView.xProperty().bind(p.widthProperty().divide(2).subtract(waluigi.getWidth()/2));
         imageView.yProperty().bind(p.heightProperty().divide(2).subtract(waluigi.getHeight()/2));
 
-        Circle circle = new Circle(50);
-        circle.setCenterX(75);
-        circle.setCenterY(75);
+        if ((int)(Math.random()*4) == 0) {
+            circle.setCenterX(80);
+            circle.setCenterY((int)((Math.random()*920)+80));
+        }
+        else if ((int)(Math.random()*4) == 1) {
+            circle.setCenterX(920);
+            circle.setCenterY((int)((Math.random()*920)+80));
+        }
+        else if ((int)(Math.random()*4) == 2) {
+            circle.setCenterX((int)((Math.random()*920)+80));
+            circle.setCenterY(80);
+        }
+        else {
+            circle.setCenterX((int)((Math.random()*920)+80));
+            circle.setCenterY(920);
+        }
         circle.setFill(Color.BLACK);
         p.getChildren().add(circle);
-        animation = new Timeline(new KeyFrame(Duration.millis(50), e -> moveBall(circle)));
-        handleCollision(circle, shield);
+        circle.setOnMousePressed(e -> {
+            if ((int)(Math.random()*4) == 0) {
+                circle.setCenterX(76);
+                circle.setCenterY((int)((Math.random()*924)+76));
+            }
+            else if ((int)(Math.random()*4) == 1) {
+                circle.setCenterX(924);
+                circle.setCenterY((int)((Math.random()*924)+76));
+            }
+            else if ((int)(Math.random()*4) == 2) {
+                circle.setCenterX((int)((Math.random()*924)+76));
+                circle.setCenterY(76);
+            }
+            else {
+                circle.setCenterX((int)((Math.random()*924)+76));
+                circle.setCenterY(924);
+            }
+            dx += 5;
+            dy += 5;
+        });
+        animation = new Timeline(new KeyFrame(Duration.millis(50), e -> moveBall()));
+        //handleCollision();
 
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.play();
@@ -51,27 +86,25 @@ public class Deflecter extends Application {
         ps.show();
     }
 
-    protected void handleCollision(Circle c1, Circle c2) {
-        if (Math.pow(c1.getCenterX()-c2.getCenterX(), 2) + Math.pow(c1.getCenterY()-c2.getCenterY(), 2) < Math.pow(c1.getRadius()+c2.getRadius(), 2)) {
-            System.out.println(Math.pow(c1.getCenterX()-c2.getCenterX(), 2));
-            System.out.println(Math.pow(c1.getCenterY()-c2.getCenterY(), 2));
-            System.out.println(Math.pow(c1.getRadius()+c2.getRadius(), 2));
-            c1.setFill(Color.RED);
+    protected void handleCollision() {
+        if (Math.pow(circle.getCenterX()-shield.getCenterX(), 2) + Math.pow(circle.getCenterY()-shield.getCenterY(), 2) < Math.pow(circle.getRadius()+shield.getRadius(), 2)) {
+            circle.setFill(Color.RED);
         }
         else {
-            c1.setFill(Color.BLACK);
+            circle.setFill(Color.BLACK);
         }
     }
 
-    protected void moveBall(Circle c) {
-        if (c.getCenterX()<c.getRadius() || c.getCenterX()>p.getWidth() - c.getRadius()) {
+    protected void moveBall() {
+        if (circle.getCenterX()<circle.getRadius() || circle.getCenterX()>p.getWidth() - circle.getRadius()) {
             dx *= -1;
         }
-        if (c.getCenterY()<c.getRadius()|| c.getCenterY()>p.getHeight() - c.getRadius()) {
+        if (circle.getCenterY()<circle.getRadius()|| circle.getCenterY()>p.getHeight() - circle.getRadius()) {
             dy *= -1;
         }
 
-        c.setCenterX(c.getCenterX() + dx);
-        c.setCenterY(c.getCenterY() + dy);
+        handleCollision();
+        circle.setCenterX(circle.getCenterX() + dx);
+        circle.setCenterY(circle.getCenterY() + dy);
     }
 }
