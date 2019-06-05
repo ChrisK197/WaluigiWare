@@ -19,6 +19,8 @@ public class Deflecter extends Application {
     protected Circle shield = new Circle(150);
     //protected Circle shield = new Circle(500, 500, 150);
     protected Circle circle = new Circle(50);
+    protected Image loser = new Image("Waluigi5.png");
+    protected ImageView imageView2 = new ImageView(loser);
 
     public void start (Stage ps) {
         shield.centerXProperty().bind(p.widthProperty().divide(2).add(10));
@@ -56,23 +58,23 @@ public class Deflecter extends Application {
         p.getChildren().add(circle);
         circle.setOnMousePressed(e -> {
             if ((int)(Math.random()*4) == 0) {
-                circle.setCenterX(76);
-                circle.setCenterY((int)((Math.random()*924)+76));
+                circle.setCenterX(80);
+                circle.setCenterY((int)((Math.random()*920)+80));
             }
             else if ((int)(Math.random()*4) == 1) {
-                circle.setCenterX(924);
-                circle.setCenterY((int)((Math.random()*924)+76));
+                circle.setCenterX(920);
+                circle.setCenterY((int)((Math.random()*920)+80));
             }
             else if ((int)(Math.random()*4) == 2) {
-                circle.setCenterX((int)((Math.random()*924)+76));
-                circle.setCenterY(76);
+                circle.setCenterX((int)((Math.random()*920)+80));
+                circle.setCenterY(80);
             }
             else {
-                circle.setCenterX((int)((Math.random()*924)+76));
-                circle.setCenterY(924);
+                circle.setCenterX((int)((Math.random()*920)+80));
+                circle.setCenterY(920);
             }
-            dx += 5;
-            dy += 5;
+            dx *= 1.25;
+            dy *= 1.25;
         });
         animation = new Timeline(new KeyFrame(Duration.millis(50), e -> moveBall()));
         //handleCollision();
@@ -89,6 +91,10 @@ public class Deflecter extends Application {
     protected void handleCollision() {
         if (Math.pow(circle.getCenterX()-shield.getCenterX(), 2) + Math.pow(circle.getCenterY()-shield.getCenterY(), 2) < Math.pow(circle.getRadius()+shield.getRadius(), 2)) {
             circle.setFill(Color.RED);
+            imageView2.setX(0);
+            imageView2.setY(0);
+            p.getChildren().add(imageView2);
+            animation.stop();
         }
         else {
             circle.setFill(Color.BLACK);
