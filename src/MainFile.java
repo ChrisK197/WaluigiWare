@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainFile extends Application{
+    public Text textt = new Text("ADD ME");
+    public Text texttt = new Text("TO SMASH");
     @Override
     public void start(Stage ps){
 
@@ -27,6 +29,25 @@ public class MainFile extends Application{
         imageView.fitWidthProperty().bind(imagePane.widthProperty());
         imageView.fitHeightProperty().bind(imagePane.heightProperty());
         imagePane.getChildren().add(imageView);
+        imageView.setOnMousePressed(e ->{
+            imageView.setImage(new Image("smash.jpg"));
+            textt.setFill(Color.PURPLE);
+            textt.setFont(Font.font("Comic Sans", 72));
+            textt.setX(0);
+            textt.setY(100);
+            imagePane.getChildren().add(textt);
+
+            texttt.setFill(Color.PURPLE);
+            texttt.setFont(Font.font("Comic Sans", 72));
+            texttt.setX(0);
+            texttt.setY(200);
+            imagePane.getChildren().add(texttt);
+        });
+        imageView.setOnMouseReleased(e -> {
+            imageView.setImage(image);
+            imagePane.getChildren().remove(textt);
+            imagePane.getChildren().remove(texttt);
+        });
         mainPane.add(imagePane, 0,0);
         GridPane selectPane = new GridPane();
         mainPane.add(selectPane,0,1);
