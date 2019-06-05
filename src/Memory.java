@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Memory extends Application {
+    public int count = 0;
 
     @Override
     public void start(Stage s) {
@@ -58,7 +59,7 @@ public class Memory extends Application {
             c1.getCard().fitHeightProperty().bind(pane.heightProperty().divide(4));
             imageList.remove(use);
             llist.remove(use);
-            c1.getCard().setOnMouseClicked(e -> pushImage(c1, map));
+            c1.getCard().setOnMouseClicked(e -> pushImage(c1, map, pane));
             pane.add(c1.getCard(), i % 2, i / 2);
 
 
@@ -94,7 +95,7 @@ public class Memory extends Application {
     }
 
 
-    public void pushImage(CardClass c1, HashMap<String, CardClass> map) {
+    public void pushImage(CardClass c1, HashMap<String, CardClass> map, GridPane pane) {
         c1.getCard().setImage(c1.getFront());
         c1.setFaceUp(true);
         for (int f = 0; f < 7; f++) {
@@ -105,6 +106,7 @@ public class Memory extends Application {
                         map.get(String.format("%d", j)).setFaceUp(false);
                         map.get(String.format("%d", f)).inactive();
                         map.get(String.format("%d", j)).inactive();
+                        count += 2;
                     } else {
                         map.get(String.format("%d", f)).unflip();
                         map.get(String.format("%d", j)).unflip();
@@ -113,6 +115,21 @@ public class Memory extends Application {
                     }
                 }
             }
+        }
+        if (count>= 8){
+            Text text = new Text("You");
+            text.xProperty().bind(pane.widthProperty().divide(2));
+            text.yProperty().bind(pane.heightProperty().divide(2));
+            text.setFill(Color.RED);
+            text.setFont(Font.font("Comic Sans", 72));
+            pane.add(text, 0, 0);
+
+            Text text2 = new Text("Win");
+            text2.xProperty().bind(pane.widthProperty().divide(2));
+            text2.yProperty().bind(pane.heightProperty().divide(2));
+            text2.setFill(Color.RED);
+            text2.setFont(Font.font("Comic Sans", 72));
+            pane.add(text2, 0, 1);
         }
     }
 }
