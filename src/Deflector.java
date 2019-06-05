@@ -7,11 +7,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
-public class Deflecter extends Application {
+public class Deflector extends Application {
     protected Pane p = new Pane();
     protected Timeline animation;
     protected int dx = 5;
@@ -21,6 +23,7 @@ public class Deflecter extends Application {
     protected Circle circle = new Circle(50);
     protected Image loser = new Image("Waluigi5.png");
     protected ImageView imageView2 = new ImageView(loser);
+    protected Text t = new Text("WAAAA! You lose!");
 
     public void start (Stage ps) {
         shield.centerXProperty().bind(p.widthProperty().divide(2).add(10));
@@ -54,7 +57,7 @@ public class Deflecter extends Application {
             circle.setCenterX((int)((Math.random()*920)+80));
             circle.setCenterY(920);
         }
-        circle.setFill(Color.BLACK);
+        circle.setFill(Color.PURPLE);
         p.getChildren().add(circle);
         circle.setOnMousePressed(e -> {
             if ((int)(Math.random()*4) == 0) {
@@ -83,7 +86,7 @@ public class Deflecter extends Application {
         animation.play();
 
         Scene scene = new Scene(p, 1000, 1000);
-        ps.setTitle("Deflecter");
+        ps.setTitle("Deflector");
         ps.setScene(scene);
         ps.show();
     }
@@ -93,11 +96,13 @@ public class Deflecter extends Application {
             circle.setFill(Color.RED);
             imageView2.setX(0);
             imageView2.setY(0);
+            t.setFill(Color.PURPLE);
+            t.setFont(Font.font("Comic Sans", 50));
+            t.setX(300);
+            t.setY(100);
             p.getChildren().add(imageView2);
+            p.getChildren().add(t);
             animation.stop();
-        }
-        else {
-            circle.setFill(Color.BLACK);
         }
     }
 
