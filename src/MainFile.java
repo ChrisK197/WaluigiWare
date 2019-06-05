@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainFile extends Application{
+    protected Text text = new Text("ADD ME");
+    protected Text textt = new Text("TO SMASH");
 
     protected Pane p = new Pane();
     protected Timeline animation;
@@ -42,6 +44,26 @@ public class MainFile extends Application{
         imageView.fitWidthProperty().bind(imagePane.widthProperty());
         imageView.fitHeightProperty().bind(imagePane.heightProperty());
         imagePane.getChildren().add(imageView);
+        imagePane.setOnMousePressed(e ->{
+            imageView.setImage(new Image("smash.jpg"));
+            text.setFill(Color.PURPLE);
+            text.setFont(Font.font("Comic Sans", 72));
+            text.setX(0);
+            text.setY(100);
+            imagePane.getChildren().add(text);
+
+            textt.setFill(Color.PURPLE);
+            textt.setFont(Font.font("Comic Sans", 72));
+            textt.setX(0);
+            textt.setY(200);
+            imagePane.getChildren().add(textt);
+
+        });
+        imagePane.setOnMouseReleased(e ->{
+            imageView.setImage(image);
+            imagePane.getChildren().remove(text);
+            imagePane.getChildren().remove(textt);
+        });
         mainPane.add(imagePane, 0,0);
         GridPane selectPane = new GridPane();
         mainPane.add(selectPane,0,1);
