@@ -1,3 +1,5 @@
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,6 +14,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -176,7 +179,15 @@ public class MainFile extends Application{
             c1.getCard().fitHeightProperty().bind(pane.heightProperty().divide(4));
             imageList.remove(use);
             llist.remove(use);
-            c1.getCard().setOnMouseClicked(e -> pushImage(c1, map, pane));
+            c1.getCard().setOnMouseClicked(e -> {
+                c1.getCard().setImage(c1.getFront());
+                c1.setFaceUp(true);
+                Timeline timeline = new Timeline(new KeyFrame(
+                        Duration.millis(500),
+                        ae -> pushImage(c1, map, pane)));
+                timeline.play();
+
+            });
             pane.add(c1.getCard(), i % 2, i / 2);
 
 
@@ -213,8 +224,6 @@ public class MainFile extends Application{
 
 
     public void pushImage(CardClass c1, HashMap<String, CardClass> map, GridPane pane) {
-        c1.getCard().setImage(c1.getFront());
-        c1.setFaceUp(true);
         for (int f = 0; f < 7; f++) {
             for (int j = f + 1; j < 8; j++) {
                 if (map.get(String.format("%d", f)).bothUp(map.get(String.format("%d", j)))) {
