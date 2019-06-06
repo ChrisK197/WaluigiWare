@@ -1,9 +1,6 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -18,7 +15,7 @@ import static javafx.scene.input.KeyCode.LEFT;
 import static javafx.scene.input.KeyCode.RIGHT;
 
 public class dodgeFallingBalls2 extends Application {
-    private int count =0;
+    private int countt =0;
     private int temp =1;
     public void start(Stage stage){
         stage.setTitle("Dodge Falling Balls");
@@ -77,26 +74,28 @@ public class dodgeFallingBalls2 extends Application {
                 if (ball.getCenterX()+30>=imageView.getX()&& ball.getCenterX()-30<=imageView.getFitWidth()+imageView.getX()){
                     if(ball.getCenterY()+30>=560 && ball.getCenterY()-30<=imageView.getY()+imageView.getFitHeight()){
                         this.stop();
+
                     }
                 }
                 temp = 1;
-                if (count==0){
+                if (countt ==0){
                     if (ball.getCenterY()+30>=700) {
                         pane.getChildren().add(ballList.get(1));
-                        count++;
+                        countt++;
                     }
                 }
-                while (temp<=count){
+                while (temp<= countt){
                     ballList.get(temp).setCenterY(ballList.get(temp).getCenterY()+5);
                     if (ballList.get(temp).getCenterX()+30>= imageView.getX() && ballList.get(temp).getCenterX()-30<= imageView.getFitWidth()+ imageView.getX()){
                         if(ballList.get(temp).getCenterY()+30>=560 && ballList.get(temp).getCenterY()-30<=imageView.getY()+ imageView.getFitHeight()){
                             this.stop();
+
                         }
                     }
                     if (ballList.get(temp).getCenterY()+30>=700){
                         ballList.get(temp).setCenterY(0);
                         pane.getChildren().add(ballList.get(temp+1));
-                        count++;
+                        countt++;
                     }
                     temp++;
                 }
