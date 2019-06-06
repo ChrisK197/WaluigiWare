@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainFile extends Application{
-    protected Text text = new Text("ADD ME");
+    protected Text texttt = new Text("ADD ME");
     protected Text textt = new Text("TO SMASH");
 
     protected Pane p = new Pane();
@@ -44,11 +44,11 @@ public class MainFile extends Application{
         imagePane.getChildren().add(imageView);
         imagePane.setOnMousePressed(e ->{
             imageView.setImage(new Image("smash.jpg"));
-            text.setFill(Color.PURPLE);
-            text.setFont(Font.font("Comic Sans", 72));
-            text.setX(0);
-            text.setY(100);
-            imagePane.getChildren().add(text);
+            texttt.setFill(Color.PURPLE);
+            texttt.setFont(Font.font("Comic Sans", 72));
+            texttt.setX(0);
+            texttt.setY(100);
+            imagePane.getChildren().add(texttt);
 
             textt.setFill(Color.PURPLE);
             textt.setFont(Font.font("Comic Sans", 72));
@@ -59,7 +59,7 @@ public class MainFile extends Application{
         });
         imagePane.setOnMouseReleased(e ->{
             imageView.setImage(image);
-            imagePane.getChildren().remove(text);
+            imagePane.getChildren().remove(texttt);
             imagePane.getChildren().remove(textt);
         });
         mainPane.add(imagePane, 0,0);
@@ -72,7 +72,10 @@ public class MainFile extends Application{
         Button b2 = new Button("Memory Matching");
         b2.setPrefSize(120, 10);
         selectPane.add(b2, 1, 0);
-        b2.setOnMouseClicked(e -> memory(new Stage()));
+        b2.setOnMouseClicked(e -> {
+            count = 0;
+            memory(new Stage());
+        });
         Button b3 = new Button("Deflector");
         b3.setPrefSize(120, 10);
         selectPane.add(b3, 2, 0);
