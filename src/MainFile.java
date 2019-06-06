@@ -68,7 +68,7 @@ public class MainFile extends Application{
         Button b1 = new Button("Find Waluigi");
         b1.setPrefSize(120, 10);
         selectPane.add(b1, 0, 0);
-        b1.setOnMouseClicked(e -> findGuy(new Stage()));
+        b1.setOnMouseClicked(e -> findGuyRules(new Stage()));
         Button b2 = new Button("Memory Matching");
         b2.setPrefSize(120, 10);
         selectPane.add(b2, 1, 0);
@@ -503,4 +503,52 @@ public class MainFile extends Application{
     }
 
 
+    private void findGuyRules(Stage s){
+        Pane pane = new Pane();
+
+        Button b = new Button("Start");
+        b.setOnMouseClicked(e -> {
+            findGuy(new Stage());
+            s.hide();
+        });
+        pane.getChildren().add(b);
+        b.setLayoutX(60);
+        b.setLayoutY(300);
+
+        Text tt = new Text("Move your cursor");
+        tt.setFont(Font.font("Comic Sans", 30));
+        tt.setX(10);
+        tt.setY(70);
+        pane.getChildren().add(tt);
+
+        Text ttt = new Text("to find Waluigi.");
+        ttt.setFont(Font.font("Comic Sans", 30));
+        ttt.setX(10);
+        ttt.setY(110);
+        pane.getChildren().add(ttt);
+
+        Text tttt = new Text("Once you hover");
+        tttt.setFont(Font.font("Comic Sans", 30));
+        tttt.setX(10);
+        tttt.setY(150);
+        pane.getChildren().add(tttt);
+
+        Text ttttt = new Text("over him, he will");
+        ttttt.setFont(Font.font("Comic Sans", 30));
+        ttttt.setX(10);
+        ttttt.setY(190);
+        pane.getChildren().add(ttttt);
+
+        Text tttttt = new Text("appear.");
+        tttttt.setFont(Font.font("Comic Sans", 30));
+        tttttt.setX(10);
+        tttttt.setY(240);
+        pane.getChildren().add(tttttt);
+
+        Scene scene = new Scene(pane, 246, 400);
+        s.setScene(scene);
+        //s.setTitle("Rules");
+        s.setTitle("Rules");
+        s.show();
+    }
 }
