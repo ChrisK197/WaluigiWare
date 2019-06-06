@@ -7,7 +7,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -43,15 +45,25 @@ public class dodgeFallingBalls2 extends Application {
         imageView.fitWidthProperty().bind(pane.widthProperty().divide(10));
         imageView.setX(600);
         imageView.setY(560);
+        Rectangle hitBox = new Rectangle();
+        hitBox.heightProperty().bind(pane.heightProperty().divide(5));
+        hitBox.widthProperty().bind(pane.widthProperty().divide(10));
+        hitBox.setFill(Color.TRANSPARENT);
+        hitBox.setStroke(Color.PURPLE);
+        hitBox.setX(600);
+        hitBox.setY(560);
+        pane.getChildren().add(hitBox);
         pane.setOnKeyPressed(e->{
             if (e.getCode()== RIGHT) {
                 if (imageView.getX() + imageView.getFitWidth()<pane.getWidth()){
-                    imageView.setX(imageView.getX() + 5);
+                    imageView.setX(imageView.getX() + 10);
+                    hitBox.setX(imageView.getX());
                 }
             }
             else if(e.getCode()== LEFT){
                 if (imageView.getX() >0){
-                    imageView.setX(imageView.getX()-5);
+                    imageView.setX(imageView.getX()-10);
+                    hitBox.setX(imageView.getX());
                 }
             }
         });
@@ -62,6 +74,11 @@ public class dodgeFallingBalls2 extends Application {
         new AnimationTimer(){
           public void handle(long currentNanoTime){
                 ball.setCenterY(ball.getCenterY()+5);
+                if (ball.getCenterX()+30>=imageView.getX()&& ball.getCenterX()-30<=imageView.getFitWidth()+imageView.getX()){
+                    if(ball.getCenterY()+30>=560 && ball.getCenterY()-30<=imageView.getY()+imageView.getFitHeight()){
+                        this.stop();
+                    }
+                }
                 temp = 1;
                 if (count==0){
                     if (ball.getCenterY()+30>=700) {
@@ -71,6 +88,11 @@ public class dodgeFallingBalls2 extends Application {
                 }
                 while (temp<=count){
                     ballList.get(temp).setCenterY(ballList.get(temp).getCenterY()+5);
+                    if (ballList.get(temp).getCenterX()+30>= imageView.getX() && ballList.get(temp).getCenterX()-30<= imageView.getFitWidth()+ imageView.getX()){
+                        if(ballList.get(temp).getCenterY()+30>=560 && ballList.get(temp).getCenterY()-30<=imageView.getY()+ imageView.getFitHeight()){
+                            this.stop();
+                        }
+                    }
                     if (ballList.get(temp).getCenterY()+30>=700){
                         ballList.get(temp).setCenterY(0);
                         pane.getChildren().add(ballList.get(temp+1));
