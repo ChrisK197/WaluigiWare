@@ -547,6 +547,7 @@ public class MainFile extends Application{
 
         Scene scene = new Scene(pane, 246, 400);
         s.setScene(scene);
+        //s.setTitle("Rules");
         s.setTitle("Rules");
         s.show();
     }
