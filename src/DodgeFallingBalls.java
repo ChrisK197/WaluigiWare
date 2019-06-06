@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import static javafx.scene.input.KeyCode.LEFT;
 import static javafx.scene.input.KeyCode.RIGHT;
 
-public class dodgeFallingBalls extends Application {
+public class DodgeFallingBalls extends Application {
     public void start(Stage dfbStage){
         Pane pane = new Pane();
 

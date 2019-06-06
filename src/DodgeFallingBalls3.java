@@ -1,7 +1,6 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 import static javafx.scene.input.KeyCode.LEFT;
 import static javafx.scene.input.KeyCode.RIGHT;
 
-public class dodgeFallingBalls2 extends Application {
+public class DodgeFallingBalls3 extends Application {
     private int countt =0;
     private int temp =1;
     public void start(Stage stage){
