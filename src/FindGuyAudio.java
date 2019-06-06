@@ -1,3 +1,5 @@
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,6 +14,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 
@@ -41,10 +44,14 @@ public class FindGuyAudio extends Application {
         hide.xProperty().bind(wahwah.xProperty());
 
         String musicFile = "waluigi_wah.mp3";
-
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
+        mediaPlayer.setVolume(0);
+
+        pane.setOnMouseMoved(e -> {
+            mediaPlayer.setVolume(Math.pow(Math.pow(e.getX()-wahwah.getX(), 2) + Math.pow(e.getY()-wahwah.getY(), 2), 2));
+            mediaPlayer.play();
+        });
 
         Circle c = new Circle();
         c.setFill(Color.TRANSPARENT);
