@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -28,7 +27,6 @@ public class MainFile extends Application{
     protected int dx = 5;
     protected int dy = 5;
     protected Circle shield = new Circle(150);
-    //protected Circle shield = new Circle(500, 500, 150);
     protected Circle circle = new Circle(50);
     protected Image loser = new Image("Waluigi5.png");
     protected ImageView imageView2 = new ImageView(loser);
@@ -240,6 +238,9 @@ public class MainFile extends Application{
     }
 
     public void deflector (Stage ps) {
+        dx = 5;
+        dy = 5;
+
         shield.centerXProperty().bind(p.widthProperty().divide(2).add(10));
         shield.centerYProperty().bind(p.heightProperty().divide(2));
         shield.setStroke(Color.RED);
@@ -255,38 +256,38 @@ public class MainFile extends Application{
 
         if ((int)(Math.random()*4) == 0) {
             circle.setCenterX(80);
-            circle.setCenterY((int)((Math.random()*920)+80));
+            circle.setCenterY((int)((Math.random()*670)+80));
         }
         else if ((int)(Math.random()*4) == 1) {
-            circle.setCenterX(920);
-            circle.setCenterY((int)((Math.random()*920)+80));
+            circle.setCenterX(670);
+            circle.setCenterY((int)((Math.random()*670)+80));
         }
         else if ((int)(Math.random()*4) == 2) {
-            circle.setCenterX((int)((Math.random()*920)+80));
+            circle.setCenterX((int)((Math.random()*670)+80));
             circle.setCenterY(80);
         }
         else {
-            circle.setCenterX((int)((Math.random()*920)+80));
-            circle.setCenterY(920);
+            circle.setCenterX((int)((Math.random()*670)+80));
+            circle.setCenterY(670);
         }
         circle.setFill(Color.PURPLE);
         p.getChildren().add(circle);
         circle.setOnMousePressed(e -> {
             if ((int)(Math.random()*4) == 0) {
                 circle.setCenterX(80);
-                circle.setCenterY((int)((Math.random()*920)+80));
+                circle.setCenterY((int)((Math.random()*670)+80));
             }
             else if ((int)(Math.random()*4) == 1) {
-                circle.setCenterX(920);
-                circle.setCenterY((int)((Math.random()*920)+80));
+                circle.setCenterX(670);
+                circle.setCenterY((int)((Math.random()*670)+80));
             }
             else if ((int)(Math.random()*4) == 2) {
-                circle.setCenterX((int)((Math.random()*920)+80));
+                circle.setCenterX((int)((Math.random()*670)+80));
                 circle.setCenterY(80);
             }
             else {
-                circle.setCenterX((int)((Math.random()*920)+80));
-                circle.setCenterY(920);
+                circle.setCenterX((int)((Math.random()*670)+80));
+                circle.setCenterY(670);
             }
             dx *= 1.25;
             dy *= 1.25;
@@ -296,7 +297,7 @@ public class MainFile extends Application{
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.play();
 
-        Scene scene = new Scene(p, 1000, 1000);
+        Scene scene = new Scene(p, 1000, 750);
         ps.setTitle("Deflector");
         ps.setScene(scene);
         ps.show();
