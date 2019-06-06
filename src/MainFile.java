@@ -195,7 +195,7 @@ public class MainFile extends Application{
                 c1.setFaceUp(true);
                 Timeline timeline = new Timeline(new KeyFrame(
                         Duration.millis(500),
-                        ae -> pushImage(c1, map, pane)));
+                        ae -> pushImage(c1, map, pane, s)));
                 timeline.play();
 
             });
@@ -339,7 +339,7 @@ public class MainFile extends Application{
     }
 
 
-    public void pushImage(CardClass c1, HashMap<String, CardClass> map, GridPane pane) {
+    public void pushImage(CardClass c1, HashMap<String, CardClass> map, GridPane pane, Stage s) {
         for (int f = 0; f < 7; f++) {
             for (int j = f + 1; j < 8; j++) {
                 if (map.get(String.format("%d", f)).bothUp(map.get(String.format("%d", j)))) {
@@ -359,19 +359,35 @@ public class MainFile extends Application{
             }
         }
         if (count>= 8){
+            Stage tempp = new Stage();
+            Pane pp = new Pane();
             Text text = new Text("You");
-            text.xProperty().bind(pane.widthProperty().divide(2));
-            text.yProperty().bind(pane.heightProperty().divide(2));
+            text.setX(60);
+            text.setY(100);
             text.setFill(Color.RED);
             text.setFont(Font.font("Comic Sans", 72));
-            pane.add(text, 0, 0);
+            pp.getChildren().add(text);
 
             Text text2 = new Text("Win");
-            text2.xProperty().bind(pane.widthProperty().divide(2));
-            text2.yProperty().bind(pane.heightProperty().divide(2));
+            text2.setX(60);
+            text2.setY(200);
             text2.setFill(Color.RED);
             text2.setFont(Font.font("Comic Sans", 72));
-            pane.add(text2, 0, 1);
+            pp.getChildren().add(text2);
+
+            Button bb = new Button("Return to menu");
+            bb.setOnMouseClicked(e ->{
+                tempp.hide();
+                s.hide();
+            });
+            bb.setLayoutX(60);
+            bb.setLayoutY(250);
+            pp.getChildren().add(bb);
+
+            Scene sss = new Scene(pp, 200, 300);
+            tempp.setScene(sss);
+            tempp.setTitle("You One");
+            tempp.show();
         }
     }
 
