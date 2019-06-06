@@ -74,7 +74,10 @@ public class MainFile extends Application{
         Button b2 = new Button("Memory Matching");
         b2.setPrefSize(120, 10);
         selectPane.add(b2, 1, 0);
-        b2.setOnMouseClicked(e -> memory(new Stage()));
+        b2.setOnMouseClicked(e -> {
+            count = 0;
+            memory(new Stage());
+        });
         Button b3 = new Button("Deflector");
         b3.setPrefSize(120, 10);
         selectPane.add(b3, 2, 0);
