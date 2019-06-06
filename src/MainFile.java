@@ -22,15 +22,8 @@ public class MainFile extends Application{
     protected Text texttt = new Text("ADD ME");
     protected Text textt = new Text("TO SMASH");
 
-    protected Pane p = new Pane();
-    protected Timeline animation;
-    protected int dx = 5;
-    protected int dy = 5;
-    protected Circle shield = new Circle(150);
-    protected Circle circle = new Circle(50);
-    protected Image loser = new Image("Waluigi5.png");
-    protected ImageView imageView2 = new ImageView(loser);
-    protected Text t = new Text("WAAAA! You lose!");
+    protected int dx;
+    protected int dy;
 
     @Override
     public void start(Stage ps){
@@ -244,6 +237,22 @@ public class MainFile extends Application{
         dx = 5;
         dy = 5;
 
+        Image loser = new Image("Waluigi5.png");
+        ImageView imageView2 = new ImageView(loser);
+        Text t = new Text("WAAAA! You lose!");
+
+        Circle shield = new Circle(150);
+        Circle circle = new Circle(50);
+
+        Pane p = new Pane();
+
+        if (p.getChildren().contains(shield)) {
+            p.getChildren().remove(shield);
+        }
+        if (p.getChildren().contains(circle)) {
+            p.getChildren().remove(circle);
+        }
+
         shield.centerXProperty().bind(p.widthProperty().divide(2).add(10));
         shield.centerYProperty().bind(p.heightProperty().divide(2));
         shield.setStroke(Color.RED);
@@ -295,7 +304,30 @@ public class MainFile extends Application{
             dx *= 1.25;
             dy *= 1.25;
         });
-        animation = new Timeline(new KeyFrame(Duration.millis(50), e -> moveBall()));
+        Timeline animation = new Timeline();
+        animation.getKeyFrames().add(new KeyFrame(Duration.millis(50), e -> {
+            if (circle.getCenterX()<circle.getRadius() || circle.getCenterX()>p.getWidth() - circle.getRadius()) {
+                dx *= -1;
+            }
+            if (circle.getCenterY()<circle.getRadius()|| circle.getCenterY()>p.getHeight() - circle.getRadius()) {
+                dy *= -1;
+            }
+
+            if (Math.pow(circle.getCenterX()-shield.getCenterX(), 2) + Math.pow(circle.getCenterY()-shield.getCenterY(), 2) < Math.pow(circle.getRadius()+shield.getRadius(), 2)) {
+                circle.setFill(Color.RED);
+                imageView2.setX(0);
+                imageView2.setY(0);
+                t.setFill(Color.PURPLE);
+                t.setFont(Font.font("Comic Sans", 50));
+                t.setX(300);
+                t.setY(100);
+                p.getChildren().add(imageView2);
+                p.getChildren().add(t);
+                animation.stop();
+            }
+            circle.setCenterX(circle.getCenterX() + dx);
+            circle.setCenterY(circle.getCenterY() + dy);
+        }));
 
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.play();
@@ -306,33 +338,6 @@ public class MainFile extends Application{
         ps.show();
     }
 
-    protected void handleCollision() {
-        if (Math.pow(circle.getCenterX()-shield.getCenterX(), 2) + Math.pow(circle.getCenterY()-shield.getCenterY(), 2) < Math.pow(circle.getRadius()+shield.getRadius(), 2)) {
-            circle.setFill(Color.RED);
-            imageView2.setX(0);
-            imageView2.setY(0);
-            t.setFill(Color.PURPLE);
-            t.setFont(Font.font("Comic Sans", 50));
-            t.setX(300);
-            t.setY(100);
-            p.getChildren().add(imageView2);
-            p.getChildren().add(t);
-            animation.stop();
-        }
-    }
-
-    protected void moveBall() {
-        if (circle.getCenterX()<circle.getRadius() || circle.getCenterX()>p.getWidth() - circle.getRadius()) {
-            dx *= -1;
-        }
-        if (circle.getCenterY()<circle.getRadius()|| circle.getCenterY()>p.getHeight() - circle.getRadius()) {
-            dy *= -1;
-        }
-
-        handleCollision();
-        circle.setCenterX(circle.getCenterX() + dx);
-        circle.setCenterY(circle.getCenterY() + dy);
-    }
 
     public void pushImage(CardClass c1, HashMap<String, CardClass> map, GridPane pane) {
         for (int f = 0; f < 7; f++) {
