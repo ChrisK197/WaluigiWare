@@ -66,26 +66,30 @@ public class MainFile extends Application{
         GridPane selectPane = new GridPane();
         mainPane.add(selectPane,0,1);
         Button b1 = new Button("Find Waluigi");
-        b1.setPrefSize(120, 10);
+        b1.setPrefSize(130, 10);
         selectPane.add(b1, 0, 0);
         b1.setOnMouseClicked(e -> findGuyRules(new Stage()));
         Button b2 = new Button("Memory Matching");
-        b2.setPrefSize(120, 10);
+        b2.setPrefSize(130, 10);
         selectPane.add(b2, 1, 0);
         b2.setOnMouseClicked(e -> {
             count = 0;
             memory(new Stage());
         });
         Button b3 = new Button("Deflector");
-        b3.setPrefSize(120, 10);
+        b3.setPrefSize(130, 10);
         selectPane.add(b3, 2, 0);
         b3.setOnMouseClicked(e -> deflector(new Stage()));
 
         Button b4 = new Button("Dodge Falling Balls");
-        b4.setPrefSize(120, 10);
+        b4.setPrefSize(130, 10);
         selectPane.add(b4, 3, 0);
         b4.setOnMouseClicked(e-> dodgeFallingBallsInstructions());
 
+        Button b5 = new Button("Dodge Falling Balls2");
+        b5.setPrefSize(130, 10);
+        selectPane.add(b5, 0, 1);
+        b5.setOnMouseClicked(e-> dodgeFallingBalls2(new Stage()));
 
         Scene scene = new Scene(mainPane, 537, 400);
         ps.setScene(scene);
@@ -516,6 +520,124 @@ public class MainFile extends Application{
                         ballList.get(temp).setCenterY(0);
                         pane.getChildren().add(ballList.get(temp+1));
                         countt++;
+                    }
+                    temp++;
+                }
+            }
+        }.start();
+        pane.requestFocus();
+    }
+
+    private void dodgeFallingBalls2(Stage stage){
+        stage.setTitle("Dodge Falling Balls 2");
+
+        Pane pane = new Pane();
+        Scene scene = new Scene(pane,1500,700);
+
+        int x = (int)(Math.random()*(pane.getWidth()-60));
+        TraversingCircle ball = new TraversingCircle(x+30, 0);
+        pane.getChildren().add(ball);
+
+        ArrayList<TraversingCircle> ballList = new ArrayList<>();
+        ballList.add(ball);
+        for (int i=1; i<100; i++){
+            int y = (int)(Math.random()*(pane.getWidth()-60));
+            TraversingCircle ball2 = new TraversingCircle(y+30,0);
+            ballList.add(ball2);
+        }
+        Text score = new Text(String.format("%d", countt));
+        pane.getChildren().add(score);
+        score.setFill(Color.PURPLE);
+        score.setStroke(Color.PURPLE);
+        score.setFont(Font.font("Comic Sans", 32));
+        score.setX(10);
+        score.setY(35);
+
+        Image waluigi = new Image("Waluigi.png");
+        ImageView imageView = new ImageView(waluigi);
+        pane.getChildren().add(imageView);
+        imageView.fitHeightProperty().bind(pane.heightProperty().divide(15));
+        imageView.fitWidthProperty().bind(pane.widthProperty().divide(30));
+        imageView.setX(600);
+        imageView.setY(650);
+        Rectangle hitBox = new Rectangle();
+        hitBox.heightProperty().bind(pane.heightProperty().divide(15));
+        hitBox.widthProperty().bind(pane.widthProperty().divide(30));
+        hitBox.setFill(Color.TRANSPARENT);
+        hitBox.setStroke(Color.PURPLE);
+        hitBox.setX(600);
+        hitBox.setY(650);
+        pane.getChildren().add(hitBox);
+        pane.setOnKeyPressed(e->{
+            if (e.getCode()== RIGHT) {
+                if (imageView.getX() + imageView.getFitWidth()<pane.getWidth()){
+                    imageView.setX(imageView.getX() + 15);
+                    hitBox.setX(imageView.getX());
+                }
+            }
+            else if(e.getCode()== LEFT){
+                if (imageView.getX() >0){
+                    imageView.setX(imageView.getX()-15);
+                    hitBox.setX(imageView.getX());
+                }
+            }
+        });
+
+        final long startNanoTIme = System.nanoTime();
+        stage.setScene(scene);
+        stage.show();
+        new AnimationTimer(){
+            public void handle(long currentNanoTime){
+                ball.setCenterY(ball.getCenterY()+5);
+                if (ball.getCenterX()+30>=imageView.getX()&& ball.getCenterX()-30<=imageView.getFitWidth()+imageView.getX()){
+                    if(ball.getCenterY()+30>=560 && ball.getCenterY()-30<=imageView.getY()+imageView.getFitHeight()){
+                        this.stop();
+                        Text gameOver = new Text("Game Over");
+                        gameOver.setFill(Color.RED);
+                        gameOver.setStroke(Color.RED);
+                        pane.getChildren().add(gameOver);
+                        gameOver.setFont(Font.font("Comic Sans", 72));
+                        gameOver.setX(500);
+                        gameOver.setY(350);
+                    }
+                }
+                temp = 1;
+                if (countt ==0){
+                    if (ball.getCenterY()+30>=700) {
+                        pane.getChildren().add(ballList.get(1));
+                        countt++;
+                        score.setText(String.format("%d", countt));
+                    }
+                }
+                while (temp<= countt){
+                    TraversingCircle ball = ballList.get(temp);
+
+                    ball.setCenterY(ball.getCenterY()+5);
+                    ball.setCenterX(ball.getCenterX()+ball.horizVelocity);
+
+                    if (ball.getCenterX()+ 30>=1500 || ball.getCenterX()-30<=0) {
+                        ball.horizVelocity *= -1;
+                    }
+
+                    if (ball.getCenterX()+30>= imageView.getX() && ball.getCenterX()-30<= imageView.getFitWidth()+ imageView.getX()){
+                        if(ball.getCenterY()+30>=650 && ball.getCenterY()-30<=imageView.getY()+ imageView.getFitHeight()){
+                            this.stop();
+                            Text gameOver = new Text("Game Over");
+                            gameOver.setFill(Color.RED);
+                            gameOver.setStroke(Color.RED);
+                            pane.getChildren().add(gameOver);
+                            gameOver.setFont(Font.font("Comic Sans", 72));
+                            gameOver.setX(500);
+                            gameOver.setY(300);
+                        }
+                    }
+                    if (ballList.get(temp).getCenterY()+30>=700){
+                        ballList.get(temp).setCenterY(0);
+                        pane.getChildren().add(ballList.get(temp+1));
+                        countt++;
+                        score.setText(String.format("%d", countt));
+                    }
+                    if(ballList.get(temp).getCenterX()+30>=1500){
                     }
                     temp++;
                 }
