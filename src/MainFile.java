@@ -397,7 +397,7 @@ public class MainFile extends Application{
 
             Scene sss = new Scene(pp, 200, 300);
             tempp.setScene(sss);
-            tempp.setTitle("You One");
+            tempp.setTitle("You Won");
             tempp.show();
         }
     }
