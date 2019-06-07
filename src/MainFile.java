@@ -84,7 +84,7 @@ public class MainFile extends Application{
         Button b4 = new Button("Dodge Falling Balls");
         b4.setPrefSize(120, 10);
         selectPane.add(b4, 3, 0);
-        b4.setOnMouseClicked(e -> dodgeFallingBalls(new Stage()));
+        b4.setOnMouseClicked(e-> dodgeFallingBallsInstructions());
 
 
         Scene scene = new Scene(mainPane, 537, 400);
@@ -402,7 +402,29 @@ public class MainFile extends Application{
         }
     }
 
-
+    public void dodgeFallingBallsInstructions(){
+        Pane pane = new Pane();
+        Text instru = new Text();
+        instru.setText("The goal is to dodge the falling balls\n " +
+                "if you get hit it is game over!\n" +
+                "This is the og version. There is \n" +
+                "another better version too!");
+        pane.getChildren().add(instru);
+        instru.setX(150);
+        instru.setY(150);
+        Button starttttttt = new Button("Click to Start");
+        pane.getChildren().add(starttttttt);
+        Scene scene = new Scene(pane,500, 500);
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.setTitle("Instructions");
+        s.show();
+        starttttttt.setOnMouseClicked(e -> {
+            countt =0;
+            dodgeFallingBalls(new Stage());
+            countt=0;
+        });
+    }
     public void dodgeFallingBalls(Stage stage){
         stage.setTitle("Dodge Falling Balls");
 
