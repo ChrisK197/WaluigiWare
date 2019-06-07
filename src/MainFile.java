@@ -68,28 +68,28 @@ public class MainFile extends Application{
         GridPane selectPane = new GridPane();
         mainPane.add(selectPane,0,1);
         Button b1 = new Button("Find Waluigi");
-        b1.setPrefSize(130, 10);
+        b1.setPrefSize(537/4, 10);
         selectPane.add(b1, 0, 0);
         b1.setOnMouseClicked(e -> findGuyRules(new Stage()));
         Button b2 = new Button("Memory Matching");
-        b2.setPrefSize(130, 10);
+        b2.setPrefSize(537/4, 10);
         selectPane.add(b2, 1, 0);
         b2.setOnMouseClicked(e -> {
             count = 0;
             memory(new Stage());
         });
         Button b3 = new Button("Deflector");
-        b3.setPrefSize(130, 10);
+        b3.setPrefSize(537/4, 10);
         selectPane.add(b3, 2, 0);
         b3.setOnMouseClicked(e -> deflectorRules(new Stage()));
 
         Button b4 = new Button("Dodge Falling Balls");
-        b4.setPrefSize(130, 10);
+        b4.setPrefSize(537/4, 10);
         selectPane.add(b4, 3, 0);
         b4.setOnMouseClicked(e-> dodgeFallingBallsInstructions());
 
         Button b5 = new Button("Dodge Falling Balls2");
-        b5.setPrefSize(130, 10);
+        b5.setPrefSize(537/4, 10);
         selectPane.add(b5, 0, 1);
         b5.setOnMouseClicked(e-> dodgeFallingBalls2(new Stage()));
 
