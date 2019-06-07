@@ -28,6 +28,8 @@ public class MainFile extends Application{
 
     protected int dx;
     protected int dy;
+    protected int total;
+    protected Text s;
 
     private int countt =0;
     private int temp =1;
@@ -79,7 +81,7 @@ public class MainFile extends Application{
         Button b3 = new Button("Deflector");
         b3.setPrefSize(130, 10);
         selectPane.add(b3, 2, 0);
-        b3.setOnMouseClicked(e -> deflector(new Stage()));
+        b3.setOnMouseClicked(e -> deflectorRules(new Stage()));
 
         Button b4 = new Button("Dodge Falling Balls");
         b4.setPrefSize(130, 10);
@@ -251,15 +253,23 @@ public class MainFile extends Application{
     public void deflector (Stage ps) {
         dx = 5;
         dy = 5;
+        total = 0;
 
         Image loser = new Image("Waluigi5.png");
         ImageView imageView2 = new ImageView(loser);
         Text t = new Text("WAAAA! You lose!");
 
+        s = new Text(Integer.toString(total));
+
         Circle shield = new Circle(150);
         Circle circle = new Circle(50);
 
         Pane p = new Pane();
+
+        s.setFill(Color.PURPLE);
+        s.setFont(Font.font("Comic Sans", 50));
+        s.setX(100);
+        s.setY(100);
 
         if (p.getChildren().contains(shield)) {
             p.getChildren().remove(shield);
@@ -267,10 +277,19 @@ public class MainFile extends Application{
         if (p.getChildren().contains(circle)) {
             p.getChildren().remove(circle);
         }
+        if (p.getChildren().contains(imageView2)) {
+            p.getChildren().remove(imageView2);
+        }
+        if (p.getChildren().contains(t)) {
+            p.getChildren().remove(t);
+        }
+        if (p.getChildren().contains(s)) {
+            p.getChildren().remove(s);
+        }
 
         shield.centerXProperty().bind(p.widthProperty().divide(2).add(10));
         shield.centerYProperty().bind(p.heightProperty().divide(2));
-        shield.setStroke(Color.RED);
+        shield.setStroke(Color.PURPLE);
         shield.setStrokeWidth(5);
         shield.setFill(Color.WHITE);
         p.getChildren().add(shield);
@@ -318,6 +337,7 @@ public class MainFile extends Application{
             }
             dx *= 1.25;
             dy *= 1.25;
+            total++;
         });
         Timeline animation = new Timeline();
         animation.getKeyFrames().add(new KeyFrame(Duration.millis(50), e -> {
@@ -342,10 +362,12 @@ public class MainFile extends Application{
             }
             circle.setCenterX(circle.getCenterX() + dx);
             circle.setCenterY(circle.getCenterY() + dy);
+            s.setText(Integer.toString(total));
         }));
 
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.play();
+        p.getChildren().add(s);
 
         Scene scene = new Scene(p, 1000, 750);
         ps.setTitle("Deflector");
@@ -684,6 +706,55 @@ public class MainFile extends Application{
         pane.getChildren().add(ttttt);
 
         Text tttttt = new Text("appear.");
+        tttttt.setFont(Font.font("Comic Sans", 30));
+        tttttt.setX(10);
+        tttttt.setY(240);
+        pane.getChildren().add(tttttt);
+
+        Scene scene = new Scene(pane, 246, 400);
+        s.setScene(scene);
+        //s.setTitle("Rules");
+        s.setTitle("Rules");
+        s.show();
+    }
+
+    private void deflectorRules(Stage s){
+        Pane pane = new Pane();
+
+        Button b = new Button("Start");
+        b.setOnMouseClicked(e -> {
+            deflector(new Stage());
+            s.hide();
+        });
+        pane.getChildren().add(b);
+        b.setLayoutX(60);
+        b.setLayoutY(300);
+
+        Text tt = new Text("Click the circle");
+        tt.setFont(Font.font("Comic Sans", 30));
+        tt.setX(10);
+        tt.setY(70);
+        pane.getChildren().add(tt);
+
+        Text ttt = new Text("before it hits");
+        ttt.setFont(Font.font("Comic Sans", 30));
+        ttt.setX(10);
+        ttt.setY(110);
+        pane.getChildren().add(ttt);
+
+        Text tttt = new Text("Waluigi. It");
+        tttt.setFont(Font.font("Comic Sans", 30));
+        tttt.setX(10);
+        tttt.setY(150);
+        pane.getChildren().add(tttt);
+
+        Text ttttt = new Text("gets faster over");
+        ttttt.setFont(Font.font("Comic Sans", 30));
+        ttttt.setX(10);
+        ttttt.setY(190);
+        pane.getChildren().add(ttttt);
+
+        Text tttttt = new Text("time.");
         tttttt.setFont(Font.font("Comic Sans", 30));
         tttttt.setX(10);
         tttttt.setY(240);
