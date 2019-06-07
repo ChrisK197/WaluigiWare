@@ -447,6 +447,7 @@ public class MainFile extends Application{
         s.show();
         starttttttt.setOnMouseClicked(e -> {
             countt =0;
+            s.hide();
             dodgeFallingBalls(new Stage());
             countt=0;
         });
