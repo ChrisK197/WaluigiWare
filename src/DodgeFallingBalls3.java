@@ -106,7 +106,7 @@ public class DodgeFallingBalls3 extends Application {
                     ball.setCenterY(ball.getCenterY()+5);
                     ball.setCenterX(ball.getCenterX()+ball.horizVelocity);
 
-                    if (ball.getCenterX()+ 30>=1500 || ball.getCenterX()-30<=0) {
+                    if (ball.getCenterX()+ 30>=pane.getWidth() || ball.getCenterX()-30<=0) {
                         ball.horizVelocity *= -1;
                     }
 
@@ -127,8 +127,6 @@ public class DodgeFallingBalls3 extends Application {
                         pane.getChildren().add(ballList.get(temp+1));
                         countt++;
                         score.setText(String.format("%d", countt));
-                    }
-                    if(ballList.get(temp).getCenterX()+30>=1500){
                     }
                     temp++;
                 }
