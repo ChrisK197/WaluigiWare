@@ -76,7 +76,7 @@ public class MainFile extends Application{
         selectPane.add(b2, 1, 0);
         b2.setOnMouseClicked(e -> {
             count = 0;
-            memory(new Stage());
+            memoryRules(new Stage());
         });
         Button b3 = new Button("Deflector");
         b3.setPrefSize(537/4, 10);
@@ -439,11 +439,11 @@ public class MainFile extends Application{
                 "This is the og version. There is \n" +
                 "another better version too!");
         pane.getChildren().add(instru);
-        instru.setX(150);
-        instru.setY(150);
+        instru.setX(10);
+        instru.setY(70);
         Button starttttttt = new Button("Click to Start");
         pane.getChildren().add(starttttttt);
-        Scene scene = new Scene(pane,500, 500);
+        Scene scene = new Scene(pane,246, 400);
         Stage s = new Stage();
         s.setScene(scene);
         s.setTitle("Instructions");
@@ -712,12 +712,60 @@ public class MainFile extends Application{
         Text tttttt = new Text("appear.");
         tttttt.setFont(Font.font("Comic Sans", 30));
         tttttt.setX(10);
-        tttttt.setY(240);
+        tttttt.setY(230);
         pane.getChildren().add(tttttt);
 
         Scene scene = new Scene(pane, 246, 400);
         s.setScene(scene);
         //s.setTitle("Rules");
+        s.setTitle("Rules");
+        s.show();
+    }
+
+    private void memoryRules(Stage s){
+        Pane pane = new Pane();
+        Button b = new Button("Start");
+        b.setOnMouseClicked(e -> {
+            memory(new Stage());
+            s.hide();
+        });
+        pane.getChildren().add(b);
+        b.setLayoutX(60);
+        b.setLayoutY(300);
+
+        Text tt = new Text("Click a card to");
+        tt.setFont(Font.font("Comic Sans", 30));
+        tt.setX(10);
+        tt.setY(70);
+        pane.getChildren().add(tt);
+
+        Text ttt = new Text("flip it over. Try");
+        ttt.setFont(Font.font("Comic Sans", 30));
+        ttt.setX(10);
+        ttt.setY(110);
+        pane.getChildren().add(ttt);
+
+        Text tttt = new Text("to match cards");
+        tttt.setFont(Font.font("Comic Sans", 30));
+        tttt.setX(10);
+        tttt.setY(150);
+        pane.getChildren().add(tttt);
+
+        Text ttttt = new Text("with the same");
+        ttttt.setFont(Font.font("Comic Sans", 30));
+        ttttt.setX(10);
+        ttttt.setY(190);
+        pane.getChildren().add(ttttt);
+
+        Text tttttt = new Text("picture to win.");
+        tttttt.setFont(Font.font("Comic Sans", 30));
+        tttttt.setX(10);
+        tttttt.setY(230);
+        pane.getChildren().add(tttttt);
+
+
+        Scene scene = new Scene(pane, 246, 400);
+        s.setScene(scene);
         s.setTitle("Rules");
         s.show();
     }
