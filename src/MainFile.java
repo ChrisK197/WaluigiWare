@@ -23,13 +23,13 @@ import static javafx.scene.input.KeyCode.LEFT;
 import static javafx.scene.input.KeyCode.RIGHT;
 
 public class MainFile extends Application{
-    protected Text texttt = new Text("ADD ME");
-    protected Text textt = new Text("TO SMASH");
+    private Text texttt = new Text("ADD ME");
+    private Text textt = new Text("TO SMASH");
 
-    protected int dx;
-    protected int dy;
-    protected int total;
-    protected Text s;
+    private int dx;
+    private int dy;
+    private int total;
+    private Text s;
 
     private int countt =0;
     private int temp =1;
@@ -94,6 +94,7 @@ public class MainFile extends Application{
         b5.setOnMouseClicked(e-> {
             countt = 0;
             dodgeFallingBalls2(new Stage());
+            countt = 0;
         });
 
         Scene scene = new Scene(mainPane, 537, 400);
@@ -166,9 +167,9 @@ public class MainFile extends Application{
         s.setTitle("Find Waluigi");
         s.show();
     }
-    public int count = 0;
+    private int count = 0;
 
-    public void memory(Stage s) {
+    private void memory(Stage s) {
         GridPane pane = new GridPane();
         Image wah = new Image("Waluigi.png");
         Image wah2 = new Image("Waluigi.png");
@@ -253,7 +254,7 @@ public class MainFile extends Application{
         pane.requestFocus();
     }
 
-    public void deflector (Stage ps) {
+    private void deflector (Stage ps) {
         dx = 5;
         dy = 5;
         total = 0;
@@ -379,7 +380,7 @@ public class MainFile extends Application{
     }
 
 
-    public void pushImage(CardClass c1, HashMap<String, CardClass> map, GridPane pane, Stage s) {
+    private void pushImage(CardClass c1, HashMap<String, CardClass> map, GridPane pane, Stage s) {
         for (int f = 0; f < 7; f++) {
             for (int j = f + 1; j < 8; j++) {
                 if (map.get(String.format("%d", f)).bothUp(map.get(String.format("%d", j)))) {
@@ -431,7 +432,7 @@ public class MainFile extends Application{
         }
     }
 
-    public void dodgeFallingBallsInstructions(){
+    private void dodgeFallingBallsInstructions(){
         Pane pane = new Pane();
         Text instru = new Text();
         instru.setText("The goal is to dodge the falling balls\n " +
@@ -455,7 +456,7 @@ public class MainFile extends Application{
             countt=0;
         });
     }
-    public void dodgeFallingBalls(Stage stage){
+    private void dodgeFallingBalls(Stage stage){
         stage.setTitle("Dodge Falling Balls");
 
         Pane pane = new Pane();
@@ -509,6 +510,9 @@ public class MainFile extends Application{
         new AnimationTimer(){
             public void handle(long currentNanoTime){
                 ball.setCenterY(ball.getCenterY()+5);
+                stage.setOnCloseRequest(e ->{
+                    this.stop();
+                });
                 if (ball.getCenterX()+30>=imageView.getX()&& ball.getCenterX()-30<=imageView.getFitWidth()+imageView.getX()){
                     if(ball.getCenterY()+30>=560 && ball.getCenterY()-30<=imageView.getY()+imageView.getFitHeight()){
                         this.stop();
@@ -542,10 +546,13 @@ public class MainFile extends Application{
                             gameOver.setY(300);
                         }
                     }
+                    if(ballList.get(countt).getCenterY()+30>=700){
+                        ballList.get(countt).setCenterY(0);
+                        pane.getChildren().add(ballList.get(countt+1));
+                        countt++;
+                    }
                     if (ballList.get(temp).getCenterY()+30>=700){
                         ballList.get(temp).setCenterY(0);
-                        pane.getChildren().add(ballList.get(temp+1));
-                        countt++;
                     }
                     temp++;
                 }
@@ -555,7 +562,7 @@ public class MainFile extends Application{
     }
 
     private void dodgeFallingBalls2(Stage stage){
-        stage.setTitle("Dodge Falling Balls 2");
+        stage.setTitle("Dodge Falling Balls");
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane,1500,700);
@@ -615,6 +622,9 @@ public class MainFile extends Application{
         new AnimationTimer(){
             public void handle(long currentNanoTime){
                 ball.setCenterY(ball.getCenterY()+5);
+                stage.setOnCloseRequest(e ->{
+                    this.stop();
+                });
                 if (ball.getCenterX()+30>=imageView.getX()&& ball.getCenterX()-30<=imageView.getFitWidth()+imageView.getX()){
                     if(ball.getCenterY()+30>=560 && ball.getCenterY()-30<=imageView.getY()+imageView.getFitHeight()){
                         this.stop();
@@ -641,7 +651,7 @@ public class MainFile extends Application{
                     ball.setCenterY(ball.getCenterY()+5);
                     ball.setCenterX(ball.getCenterX()+ball.horizVelocity);
 
-                    if (ball.getCenterX()+ 30>=1500 || ball.getCenterX()-30<=0) {
+                    if (ball.getCenterX()+ 30>=pane.getWidth() || ball.getCenterX()-30<=0) {
                         ball.horizVelocity *= -1;
                     }
 
@@ -657,13 +667,14 @@ public class MainFile extends Application{
                             gameOver.setY(300);
                         }
                     }
-                    if (ballList.get(temp).getCenterY()+30>=700){
-                        ballList.get(temp).setCenterY(0);
-                        pane.getChildren().add(ballList.get(temp+1));
+                    if(ballList.get(countt).getCenterY()+30>=700){
+                        ballList.get(countt).setCenterY(0);
+                        pane.getChildren().add(ballList.get(countt+1));
                         countt++;
                         score.setText(String.format("%d", countt));
                     }
-                    if(ballList.get(temp).getCenterX()+30>=1500){
+                    if (ballList.get(temp).getCenterY()+30>=700){
+                        ballList.get(temp).setCenterY(0);
                     }
                     temp++;
                 }
