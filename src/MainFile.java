@@ -8,6 +8,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -16,6 +18,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -33,6 +36,8 @@ public class MainFile extends Application{
 
     private int countt =0;
     private int temp =1;
+
+    private Timeline musicLoop = new Timeline(new KeyFrame(Duration.millis(122000), e -> musicLoopAnimation()));
 
     @Override
     public void start(Stage ps){
@@ -96,6 +101,13 @@ public class MainFile extends Application{
             dodgeFallingBalls2(new Stage());
             countt = 0;
         });
+
+        String musicFile = "Wii_Sports.mp3";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(100);
+        mediaPlayer.play();
+        musicLoop.play();
 
         Scene scene = new Scene(mainPane, 537, 400);
         ps.setScene(scene);
@@ -362,6 +374,11 @@ public class MainFile extends Application{
                 t.setY(100);
                 p.getChildren().add(imageView2);
                 p.getChildren().add(t);
+                String musicFile = "waluigi_wah.mp3";
+                Media sound = new Media(new File(musicFile).toURI().toString());
+                MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                mediaPlayer.setVolume(100);
+                mediaPlayer.play();
                 animation.stop();
             }
             circle.setCenterX(circle.getCenterX() + dx);
@@ -683,6 +700,13 @@ public class MainFile extends Application{
         pane.requestFocus();
     }
 
+    private void musicLoopAnimation() {
+        String musicFile = "Wii_Sports.mp3";
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(100);
+        mediaPlayer.play();
+    }
 
     private void findGuyRules(Stage s){
         Pane pane = new Pane();
