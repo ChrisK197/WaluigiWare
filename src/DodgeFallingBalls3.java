@@ -122,11 +122,14 @@ public class DodgeFallingBalls3 extends Application {
                             gameOver.setY(300);
                         }
                     }
-                    if (ballList.get(temp).getCenterY()+30>=700){
-                        ballList.get(temp).setCenterY(0);
-                        pane.getChildren().add(ballList.get(temp+1));
+                    if(ballList.get(countt).getCenterY()+30>=700){
+                        ballList.get(countt).setCenterY(0);
+                        pane.getChildren().add(ballList.get(countt+1));
                         countt++;
                         score.setText(String.format("%d", countt));
+                    }
+                    if (ballList.get(temp).getCenterY()+30>=700){
+                        ballList.get(temp).setCenterY(0);
                     }
                     temp++;
                 }
