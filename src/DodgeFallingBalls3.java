@@ -80,6 +80,9 @@ public class DodgeFallingBalls3 extends Application {
         new AnimationTimer(){
           public void handle(long currentNanoTime){
                 ball.setCenterY(ball.getCenterY()+5);
+                stage.setOnCloseRequest(e ->{
+                    this.stop();
+                });
                 if (ball.getCenterX()+30>=imageView.getX()&& ball.getCenterX()-30<=imageView.getFitWidth()+imageView.getX()){
                     if(ball.getCenterY()+30>=560 && ball.getCenterY()-30<=imageView.getY()+imageView.getFitHeight()){
                         this.stop();
