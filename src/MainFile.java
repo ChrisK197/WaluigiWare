@@ -91,7 +91,10 @@ public class MainFile extends Application{
         Button b5 = new Button("Dodge Falling Balls2");
         b5.setPrefSize(537/4, 10);
         selectPane.add(b5, 0, 1);
-        b5.setOnMouseClicked(e-> dodgeFallingBalls2(new Stage()));
+        b5.setOnMouseClicked(e-> {
+            countt = 0;
+            dodgeFallingBalls2(new Stage());
+        });
 
         Scene scene = new Scene(mainPane, 537, 400);
         ps.setScene(scene);
