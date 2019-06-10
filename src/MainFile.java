@@ -439,8 +439,8 @@ public class MainFile extends Application{
                 "This is the og version. There is \n" +
                 "another better version too!");
         pane.getChildren().add(instru);
-        instru.setX(150);
-        instru.setY(150);
+        instru.setX(10);
+        instru.setY(70);
         Button starttttttt = new Button("Click to Start");
         pane.getChildren().add(starttttttt);
         Scene scene = new Scene(pane,246, 400);
