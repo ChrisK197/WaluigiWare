@@ -94,6 +94,7 @@ public class MainFile extends Application{
         b5.setOnMouseClicked(e-> {
             countt = 0;
             dodgeFallingBalls2(new Stage());
+            countt = 0;
         });
 
         Scene scene = new Scene(mainPane, 537, 400);
@@ -509,6 +510,9 @@ public class MainFile extends Application{
         new AnimationTimer(){
             public void handle(long currentNanoTime){
                 ball.setCenterY(ball.getCenterY()+5);
+                stage.setOnCloseRequest(e ->{
+                    this.stop();
+                });
                 if (ball.getCenterX()+30>=imageView.getX()&& ball.getCenterX()-30<=imageView.getFitWidth()+imageView.getX()){
                     if(ball.getCenterY()+30>=560 && ball.getCenterY()-30<=imageView.getY()+imageView.getFitHeight()){
                         this.stop();
@@ -542,10 +546,13 @@ public class MainFile extends Application{
                             gameOver.setY(300);
                         }
                     }
+                    if(ballList.get(countt).getCenterY()+30>=700){
+                        ballList.get(countt).setCenterY(0);
+                        pane.getChildren().add(ballList.get(countt+1));
+                        countt++;
+                    }
                     if (ballList.get(temp).getCenterY()+30>=700){
                         ballList.get(temp).setCenterY(0);
-                        pane.getChildren().add(ballList.get(temp+1));
-                        countt++;
                     }
                     temp++;
                 }
@@ -555,7 +562,7 @@ public class MainFile extends Application{
     }
 
     private void dodgeFallingBalls2(Stage stage){
-        stage.setTitle("Dodge Falling Balls 2");
+        stage.setTitle("Dodge Falling Balls");
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane,1500,700);
@@ -615,6 +622,9 @@ public class MainFile extends Application{
         new AnimationTimer(){
             public void handle(long currentNanoTime){
                 ball.setCenterY(ball.getCenterY()+5);
+                stage.setOnCloseRequest(e ->{
+                    this.stop();
+                });
                 if (ball.getCenterX()+30>=imageView.getX()&& ball.getCenterX()-30<=imageView.getFitWidth()+imageView.getX()){
                     if(ball.getCenterY()+30>=560 && ball.getCenterY()-30<=imageView.getY()+imageView.getFitHeight()){
                         this.stop();
@@ -641,7 +651,7 @@ public class MainFile extends Application{
                     ball.setCenterY(ball.getCenterY()+5);
                     ball.setCenterX(ball.getCenterX()+ball.horizVelocity);
 
-                    if (ball.getCenterX()+ 30>=1500 || ball.getCenterX()-30<=0) {
+                    if (ball.getCenterX()+ 30>=pane.getWidth() || ball.getCenterX()-30<=0) {
                         ball.horizVelocity *= -1;
                     }
 
@@ -657,13 +667,14 @@ public class MainFile extends Application{
                             gameOver.setY(300);
                         }
                     }
-                    if (ballList.get(temp).getCenterY()+30>=700){
-                        ballList.get(temp).setCenterY(0);
-                        pane.getChildren().add(ballList.get(temp+1));
+                    if(ballList.get(countt).getCenterY()+30>=700){
+                        ballList.get(countt).setCenterY(0);
+                        pane.getChildren().add(ballList.get(countt+1));
                         countt++;
                         score.setText(String.format("%d", countt));
                     }
-                    if(ballList.get(temp).getCenterX()+30>=1500){
+                    if (ballList.get(temp).getCenterY()+30>=700){
+                        ballList.get(temp).setCenterY(0);
                     }
                     temp++;
                 }
