@@ -864,7 +864,7 @@ public class MainFile extends Application{
         Text tttttt = new Text("time.");
         tttttt.setFont(Font.font("Comic Sans", 30));
         tttttt.setX(10);
-        tttttt.setY(240);
+        tttttt.setY(230);
         pane.getChildren().add(tttttt);
 
         Scene scene = new Scene(pane, 246, 400);
