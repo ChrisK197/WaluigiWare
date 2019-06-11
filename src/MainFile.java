@@ -48,8 +48,8 @@ public class MainFile extends Application{
         Pane imagePane = new Pane();
         Image image = new Image("Menu - Copy.png");
         ImageView imageView = new ImageView(image);
-        imageView.fitWidthProperty().bind(imagePane.widthProperty());
-        imageView.fitHeightProperty().bind(imagePane.heightProperty());
+        imageView.fitWidthProperty().bind(mainPane.widthProperty());
+        imageView.fitHeightProperty().bind(mainPane.heightProperty());
         imagePane.getChildren().add(imageView);
         imagePane.setOnMousePressed(e ->{
             imageView.setImage(new Image("smash.jpg"));
@@ -108,7 +108,7 @@ public class MainFile extends Application{
         mediaPlayer.setVolume(100);
         mediaPlayer.play();
 
-        Scene scene = new Scene(mainPane, 537, 400);
+        Scene scene = new Scene(mainPane, 537, 284);
         ps.setScene(scene);
         ps.setTitle("Waluigi Ware");
         ps.show();
