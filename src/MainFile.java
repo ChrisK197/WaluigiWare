@@ -113,7 +113,7 @@ public class MainFile extends Application{
         mediaPlayer.setVolume(100);
         mediaPlayer.play();
 
-        Scene scene = new Scene(mainPane, 537, 284);
+        Scene scene = new Scene(mainPane, 537, 264);
         ps.setScene(scene);
         ps.setTitle("Waluigi Ware");
         ps.show();
