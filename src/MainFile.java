@@ -37,8 +37,6 @@ public class MainFile extends Application{
     private int countt =0;
     private int temp =1;
 
-    private Timeline musicLoop = new Timeline(new KeyFrame(Duration.millis(122000), e -> musicLoopAnimation()));
-
     @Override
     public void start(Stage ps){
 
@@ -107,7 +105,6 @@ public class MainFile extends Application{
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setVolume(100);
         mediaPlayer.play();
-        musicLoop.play();
 
         Scene scene = new Scene(mainPane, 537, 400);
         ps.setScene(scene);
@@ -158,6 +155,11 @@ public class MainFile extends Application{
             text.setFill(Color.RED);
             text.setFont(Font.font("Comic Sans", 72));
             pane.getChildren().add(text);
+            String musicFile = "waluigi_wah.mp3";
+            Media sound = new Media(new File(musicFile).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.setVolume(100);
+            mediaPlayer.play();
             Button b = new Button("Return to select screen");
             b.setPrefSize(150, 10);
             b.layoutXProperty().bind(text.xProperty());
@@ -433,6 +435,12 @@ public class MainFile extends Application{
             text2.setFont(Font.font("Comic Sans", 72));
             pp.getChildren().add(text2);
 
+            String musicFile = "waluigi_wah.mp3";
+            Media sound = new Media(new File(musicFile).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.setVolume(100);
+            mediaPlayer.play();
+
             Button bb = new Button("Return to menu");
             bb.setOnMouseClicked(e ->{
                 tempp.hide();
@@ -540,6 +548,11 @@ public class MainFile extends Application{
                         gameOver.setFont(Font.font("Comic Sans", 72));
                         gameOver.setX(500);
                         gameOver.setY(350);
+                        String musicFile = "waluigi_wah.mp3";
+                        Media sound = new Media(new File(musicFile).toURI().toString());
+                        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                        mediaPlayer.setVolume(100);
+                        mediaPlayer.play();
                     }
                 }
                 temp = 1;
@@ -561,6 +574,11 @@ public class MainFile extends Application{
                             gameOver.setFont(Font.font("Comic Sans", 72));
                             gameOver.setX(500);
                             gameOver.setY(300);
+                            String musicFile = "waluigi_wah.mp3";
+                            Media sound = new Media(new File(musicFile).toURI().toString());
+                            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                            mediaPlayer.setVolume(100);
+                            mediaPlayer.play();
                         }
                     }
                     if(ballList.get(countt).getCenterY()+30>=700){
@@ -652,6 +670,11 @@ public class MainFile extends Application{
                         gameOver.setFont(Font.font("Comic Sans", 72));
                         gameOver.setX(500);
                         gameOver.setY(350);
+                        String musicFile = "waluigi_wah.mp3";
+                        Media sound = new Media(new File(musicFile).toURI().toString());
+                        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                        mediaPlayer.setVolume(100);
+                        mediaPlayer.play();
                     }
                 }
                 temp = 1;
@@ -682,6 +705,11 @@ public class MainFile extends Application{
                             gameOver.setFont(Font.font("Comic Sans", 72));
                             gameOver.setX(500);
                             gameOver.setY(300);
+                            String musicFile = "waluigi_wah.mp3";
+                            Media sound = new Media(new File(musicFile).toURI().toString());
+                            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                            mediaPlayer.setVolume(100);
+                            mediaPlayer.play();
                         }
                     }
                     if(ballList.get(countt).getCenterY()+30>=700){
@@ -698,14 +726,6 @@ public class MainFile extends Application{
             }
         }.start();
         pane.requestFocus();
-    }
-
-    private void musicLoopAnimation() {
-        String musicFile = "Wii_Sports.mp3";
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setVolume(100);
-        mediaPlayer.play();
     }
 
     private void findGuyRules(Stage s){

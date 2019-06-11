@@ -4,6 +4,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -11,6 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import static javafx.scene.input.KeyCode.LEFT;
@@ -93,6 +96,11 @@ public class DodgeFallingBalls3 extends Application {
                         gameOver.setFont(Font.font("Comic Sans", 72));
                         gameOver.setX(500);
                         gameOver.setY(350);
+                        String musicFile = "waluigi_wah.mp3";
+                        Media sound = new Media(new File(musicFile).toURI().toString());
+                        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                        mediaPlayer.setVolume(100);
+                        mediaPlayer.play();
                     }
                 }
                 temp = 1;
@@ -123,6 +131,11 @@ public class DodgeFallingBalls3 extends Application {
                             gameOver.setFont(Font.font("Comic Sans", 72));
                             gameOver.setX(500);
                             gameOver.setY(300);
+                            String musicFile = "waluigi_wah.mp3";
+                            Media sound = new Media(new File(musicFile).toURI().toString());
+                            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+                            mediaPlayer.setVolume(100);
+                            mediaPlayer.play();
                         }
                     }
                     if(ballList.get(countt).getCenterY()+30>=pane.getHeight()){
