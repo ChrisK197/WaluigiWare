@@ -105,7 +105,7 @@ public class MainFile extends Application{
         selectPane.add(b5, 0, 1);
         b5.setOnMouseClicked(e-> {
             countt = 0;
-            dodgeFallingBalls2(new Stage());
+            dodgeFallingBalls2Instructions();
             countt = 0;
         });
 
@@ -607,6 +607,33 @@ public class MainFile extends Application{
         pane.requestFocus();
     }
 
+    private void dodgeFallingBalls2Instructions(){
+        Pane pane = new Pane();
+        Text instru = new Text();
+        instru.setText("The goal is to\ndodge the falling\n balls" +
+                " if you get\n hit it is game\n over! " +
+                "This is the\n new version.\nThere is" +
+                " another\nog version too!");
+        instru.setFont(Font.font("Comic Sans", 30));
+        pane.getChildren().add(instru);
+        instru.setX(10);
+        instru.setY(70);
+        Button starttttttt = new Button("Click to Start");
+        pane.getChildren().add(starttttttt);
+        starttttttt.setLayoutX(60);
+        starttttttt.setLayoutY(375);
+        Scene scene = new Scene(pane,246, 400);
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.setTitle("Instructions");
+        s.show();
+        starttttttt.setOnMouseClicked(e -> {
+            countt =0;
+            s.hide();
+            dodgeFallingBalls2(new Stage());
+            countt=0;
+        });
+    }
     private void dodgeFallingBalls2(Stage stage){
         stage.setTitle("Dodge Falling Balls");
 
