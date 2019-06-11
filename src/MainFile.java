@@ -626,15 +626,15 @@ public class MainFile extends Application{
         pane.getChildren().add(imageView);
         imageView.fitHeightProperty().bind(pane.heightProperty().divide(15));
         imageView.fitWidthProperty().bind(pane.widthProperty().divide(30));
-        imageView.setX(600);
-        imageView.setY(650);
+        imageView.setX(pane.getWidth()/2 -150);
+        imageView.setY(pane.getHeight()-50);
         Rectangle hitBox = new Rectangle();
         hitBox.heightProperty().bind(pane.heightProperty().divide(15));
         hitBox.widthProperty().bind(pane.widthProperty().divide(30));
         hitBox.setFill(Color.TRANSPARENT);
         hitBox.setStroke(Color.PURPLE);
-        hitBox.setX(600);
-        hitBox.setY(650);
+        hitBox.setX(pane.getWidth()/2-150);
+        hitBox.setY(pane.getHeight()-50);
         pane.getChildren().add(hitBox);
         pane.setOnKeyPressed(e->{
             if (e.getCode()== RIGHT) {
@@ -661,7 +661,7 @@ public class MainFile extends Application{
                     this.stop();
                 });
                 if (ball.getCenterX()+30>=imageView.getX()&& ball.getCenterX()-30<=imageView.getFitWidth()+imageView.getX()){
-                    if(ball.getCenterY()+30>=560 && ball.getCenterY()-30<=imageView.getY()+imageView.getFitHeight()){
+                    if(ball.getCenterY()+30>=imageView.getY() && ball.getCenterY()-30<=imageView.getY()+imageView.getFitHeight()){
                         this.stop();
                         Text gameOver = new Text("Game Over");
                         gameOver.setFill(Color.RED);
@@ -696,7 +696,7 @@ public class MainFile extends Application{
                     }
 
                     if (ball.getCenterX()+30>= imageView.getX() && ball.getCenterX()-30<= imageView.getFitWidth()+ imageView.getX()){
-                        if(ball.getCenterY()+30>=650 && ball.getCenterY()-30<=imageView.getY()+ imageView.getFitHeight()){
+                        if(ball.getCenterY()+30>=imageView.getY() && ball.getCenterY()-30<=imageView.getY()+ imageView.getFitHeight()){
                             this.stop();
                             Text gameOver = new Text("Game Over");
                             gameOver.setFill(Color.RED);
@@ -712,13 +712,13 @@ public class MainFile extends Application{
                             mediaPlayer.play();
                         }
                     }
-                    if(ballList.get(countt).getCenterY()+30>=700){
+                    if(ballList.get(countt).getCenterY()+30>=pane.getHeight()){
                         ballList.get(countt).setCenterY(0);
                         pane.getChildren().add(ballList.get(countt+1));
                         countt++;
                         score.setText(String.format("%d", countt));
                     }
-                    if (ballList.get(temp).getCenterY()+30>=700){
+                    if (ballList.get(temp).getCenterY()+30>=pane.getHeight()){
                         ballList.get(temp).setCenterY(0);
                     }
                     temp++;
