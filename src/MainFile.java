@@ -462,10 +462,11 @@ public class MainFile extends Application{
     private void dodgeFallingBallsInstructions(){
         Pane pane = new Pane();
         Text instru = new Text();
-        instru.setText("The goal is to dodge the falling balls\n " +
-                "if you get hit it is game over!\n" +
-                "This is the og version. There is \n" +
-                "another better version too!");
+        instru.setText("The goal is to\ndodge the falling\n balls" +
+                "if you get\n hit it is game\n over! " +
+                "This is the\n og version. There\n is" +
+                " another better\n version too!");
+        instru.setFont(Font.font("Comic Sans", 30));
         pane.getChildren().add(instru);
         instru.setX(10);
         instru.setY(70);
