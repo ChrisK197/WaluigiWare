@@ -463,7 +463,7 @@ public class MainFile extends Application{
         Pane pane = new Pane();
         Text instru = new Text();
         instru.setText("The goal is to\ndodge the falling\n balls" +
-                "if you get\n hit it is game\n over! " +
+                " if you get\n hit it is game\n over! " +
                 "This is the\n og version. There\n is" +
                 " another better\n version too!");
         instru.setFont(Font.font("Comic Sans", 30));
@@ -472,6 +472,8 @@ public class MainFile extends Application{
         instru.setY(70);
         Button starttttttt = new Button("Click to Start");
         pane.getChildren().add(starttttttt);
+        starttttttt.setLayoutX(60);
+        starttttttt.setLayoutY(375);
         Scene scene = new Scene(pane,246, 400);
         Stage s = new Stage();
         s.setScene(scene);
