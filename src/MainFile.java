@@ -166,7 +166,7 @@ public class MainFile extends Application{
             text.setFill(Color.RED);
             text.setFont(Font.font("Comic Sans", 72));
             pane.getChildren().add(text);
-            mP.setVolume(100);
+            mP.setVolume(500);
             mP.play();
             Button b = new Button("Return to select screen");
             b.setPrefSize(150, 10);
@@ -384,7 +384,7 @@ public class MainFile extends Application{
                 t.setY(100);
                 p.getChildren().add(imageView2);
                 p.getChildren().add(t);
-                mP.setVolume(100);
+                mP.setVolume(500);
                 mP.play();
                 Button b = new Button("Return to select screen");
                 b.setPrefSize(200, 10);
@@ -446,7 +446,7 @@ public class MainFile extends Application{
             text2.setFont(Font.font("Comic Sans", 72));
             pp.getChildren().add(text2);
 
-            mP.setVolume(100);
+            mP.setVolume(500);
             mP.play();
 
             Button bb = new Button("Return to menu");
@@ -560,7 +560,7 @@ public class MainFile extends Application{
                         gameOver.setX(500);
                         gameOver.setY(350);
                         String musicFile = "waluigi_wah.mp3";
-                        mP.setVolume(100);
+                        mP.setVolume(500);
                         mP.play();
                     }
                 }
@@ -583,7 +583,7 @@ public class MainFile extends Application{
                             gameOver.setFont(Font.font("Comic Sans", 72));
                             gameOver.setX(500);
                             gameOver.setY(300);
-                            mP.setVolume(100);
+                            mP.setVolume(500);
                             mP.play();
                         }
                     }
@@ -703,7 +703,7 @@ public class MainFile extends Application{
                         gameOver.setFont(Font.font("Comic Sans", 72));
                         gameOver.setX(500);
                         gameOver.setY(350);
-                        mP.setVolume(100);
+                        mP.setVolume(500);
                         mP.play();
                     }
                 }
@@ -735,7 +735,7 @@ public class MainFile extends Application{
                             gameOver.setFont(Font.font("Comic Sans", 72));
                             gameOver.setX(500);
                             gameOver.setY(300);
-                            mP.setVolume(100);
+                            mP.setVolume(500);
                             mP.play();
                         }
                     }
