@@ -87,7 +87,7 @@ public class DodgeFallingBalls3 extends Application {
                     this.stop();
                 });
                 if (ball.getCenterX()+30>=imageView.getX()&& ball.getCenterX()-30<=imageView.getFitWidth()+imageView.getX()){
-                    if(ball.getCenterY()+30>=560 && ball.getCenterY()-30<=imageView.getY()+imageView.getFitHeight()){
+                    if(ball.getCenterY()+30>=imageView.getY() && ball.getCenterY()-30<=imageView.getY()+imageView.getFitHeight()){
                         this.stop();
                         Text gameOver = new Text("Game Over");
                         gameOver.setFill(Color.RED);
