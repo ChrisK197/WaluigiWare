@@ -715,8 +715,8 @@ public class MainFile extends Application{
                         gameOver.setStroke(Color.RED);
                         pane.getChildren().add(gameOver);
                         gameOver.setFont(Font.font("Comic Sans", 72));
-                        gameOver.setX(500);
-                        gameOver.setY(350);
+                        gameOver.setX(pane.getWidth()/3);
+                        gameOver.setY(pane.getHeight()/2);
                         mP.setVolume(500);
                         mP.play();
                     }
