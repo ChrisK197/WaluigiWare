@@ -694,6 +694,9 @@ public class MainFile extends Application{
         stage.show();
         new AnimationTimer(){
             public void handle(long currentNanoTime){
+                if (imageView.getX()+imageView.getFitWidth()>pane.getWidth()+15){
+                    imageView.setX(pane.getWidth()/2);
+                }
                 ball.setCenterY(ball.getCenterY()+5);
                 stage.setOnCloseRequest(e ->{
                     this.stop();
