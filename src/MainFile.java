@@ -80,12 +80,12 @@ public class MainFile extends Application{
         mainPane.add(selectPane,0,1);
         Button b1 = new Button("Find Waluigi");
         b1.setPrefSize(4, 10);
-        b1.prefWidthProperty().bind(mainPane.widthProperty().divide(4));
+        b1.prefWidthProperty().bind(mainPane.widthProperty().divide(3));
         selectPane.add(b1, 0, 0);
         b1.setOnMouseClicked(e -> findGuyRules(new Stage()));
         Button b2 = new Button("Memory Matching");
         b2.setPrefSize(mainPane.getWidth()/4, 10);
-        b2.prefWidthProperty().bind(mainPane.widthProperty().divide(4));
+        b2.prefWidthProperty().bind(mainPane.widthProperty().divide(3));
         selectPane.add(b2, 1, 0);
         b2.setOnMouseClicked(e -> {
             count = 0;
@@ -93,20 +93,20 @@ public class MainFile extends Application{
         });
         Button b3 = new Button("Deflector");
         b3.setPrefSize(mainPane.getWidth()/4, 10);
-        b3.prefWidthProperty().bind(mainPane.widthProperty().divide(4));
+        b3.prefWidthProperty().bind(mainPane.widthProperty().divide(3));
         selectPane.add(b3, 2, 0);
         b3.setOnMouseClicked(e -> deflectorRules(new Stage()));
 
         Button b4 = new Button("Dodge Falling Balls");
         b4.setPrefSize(mainPane.getWidth()/4, 10);
-        b4.prefWidthProperty().bind(mainPane.widthProperty().divide(4));
-        selectPane.add(b4, 3, 0);
+        b4.prefWidthProperty().bind(mainPane.widthProperty().divide(3));
+        selectPane.add(b4, 0, 1);
         b4.setOnMouseClicked(e-> dodgeFallingBallsInstructions());
 
         Button b5 = new Button("Dodge Falling Balls2");
         b5.setPrefSize(mainPane.getWidth()/4, 10);
-        b5.prefWidthProperty().bind(mainPane.widthProperty().divide(4));
-        selectPane.add(b5, 0, 1);
+        b5.prefWidthProperty().bind(mainPane.widthProperty().divide(3));
+        selectPane.add(b5, 1, 1);
         b5.setOnMouseClicked(e-> {
             countt = 0;
             dodgeFallingBalls2Instructions();
@@ -115,8 +115,8 @@ public class MainFile extends Application{
 
         Button b6 = new Button("Big Matching");
         b6.setPrefSize(mainPane.getWidth()/4, 10);
-        b6.prefWidthProperty().bind(mainPane.widthProperty().divide(4));
-        selectPane.add(b6, 1, 1);
+        b6.prefWidthProperty().bind(mainPane.widthProperty().divide(3));
+        selectPane.add(b6, 2, 1);
         b6.setOnMouseClicked(e -> {
             count2 = 0;
             bigMatching(new Stage());
