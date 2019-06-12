@@ -94,7 +94,7 @@ public class MainFile extends Application{
         Button b3 = new Button("Deflector");
         b3.setPrefSize(mainPane.getWidth()/4, 10);
         b3.prefWidthProperty().bind(mainPane.widthProperty().divide(3));
-        selectPane.add(b3, 2, 0);
+        selectPane.add(b3, 2, 1);
         b3.setOnMouseClicked(e -> deflectorRules(new Stage()));
 
         Button b4 = new Button("Dodge Falling Balls");
@@ -116,7 +116,7 @@ public class MainFile extends Application{
         Button b6 = new Button("Big Matching");
         b6.setPrefSize(mainPane.getWidth()/4, 10);
         b6.prefWidthProperty().bind(mainPane.widthProperty().divide(3));
-        selectPane.add(b6, 2, 1);
+        selectPane.add(b6, 2, 0);
         b6.setOnMouseClicked(e -> {
             count2 = 0;
             bigMatchingRules(new Stage());
