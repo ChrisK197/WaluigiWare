@@ -805,6 +805,36 @@ public class MainFile extends Application{
         Image sonic = new Image("sonic.png");
         Image sonic2 = new Image("sonic.png");
 
+        Image bj = new Image("bj.jpg");
+        Image bj2 = new Image("bj.jpg");
+
+        Image boo = new Image("boo.png");
+        Image boo2 = new Image("boo.png");
+
+        Image chain = new Image("chain.png");
+        Image chain2 = new Image("chain.png");
+
+        Image daisy = new Image("daisy.png");
+        Image daisy2 = new Image("daisy.png");
+
+        Image dk = new Image("dk.jpg");
+        Image dk2 = new Image("dk.jpg");
+
+        Image drybones = new Image("drybones.jpeg");
+        Image drybones2 = new Image("drybones.jpeg");
+
+        Image goomba = new Image("goomba.jpg");
+        Image goomba2 = new Image("goomba.jpg");
+
+        Image kotr = new Image("koopatropa.jpg");
+        Image kotr2 = new Image("koopatropa.jpg");
+
+        Image shy = new Image("shyguy.jpg");
+        Image shy2 = new Image("shyguy.jpg");
+
+        Image yoshi = new Image("yoshi.png");
+        Image yoshi2 = new Image("yoshi.png");
+
         ArrayList<Image> imageList = new ArrayList<>();
         imageList.add(wah);
         imageList.add(wah2);
@@ -822,6 +852,26 @@ public class MainFile extends Application{
         imageList.add(peach2);
         imageList.add(sonic);
         imageList.add(sonic2);
+        imageList.add(bj);
+        imageList.add(bj2);
+        imageList.add(boo);
+        imageList.add(boo2);
+        imageList.add(chain);
+        imageList.add(chain2);
+        imageList.add(daisy);
+        imageList.add(daisy2);
+        imageList.add(dk);
+        imageList.add(dk2);
+        imageList.add(drybones);
+        imageList.add(drybones2);
+        imageList.add(goomba);
+        imageList.add(goomba2);
+        imageList.add(kotr);
+        imageList.add(kotr2);
+        imageList.add(shy);
+        imageList.add(shy2);
+        imageList.add(yoshi);
+        imageList.add(yoshi2);
         ArrayList<String> llist = new ArrayList<>();
         llist.add("0");
         llist.add("0");
@@ -839,14 +889,34 @@ public class MainFile extends Application{
         llist.add("6");
         llist.add("7");
         llist.add("7");
+        llist.add("8");
+        llist.add("8");
+        llist.add("9");
+        llist.add("9");
+        llist.add("10");
+        llist.add("10");
+        llist.add("11");
+        llist.add("11");
+        llist.add("12");
+        llist.add("12");
+        llist.add("13");
+        llist.add("13");
+        llist.add("14");
+        llist.add("14");
+        llist.add("15");
+        llist.add("15");
+        llist.add("16");
+        llist.add("16");
+        llist.add("17");
+        llist.add("17");
         HashMap<String, CardClass> map = new HashMap<>();
 
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 36; i++) {
             int use = (int) (Math.random() * imageList.size());
             String code = llist.get(use);
             CardClass c1 = new CardClass(imageList.get(use), code);
-            c1.getCard().fitWidthProperty().bind(pane.widthProperty().divide(4));
-            c1.getCard().fitHeightProperty().bind(pane.heightProperty().divide(4));
+            c1.getCard().fitWidthProperty().bind(pane.widthProperty().divide(6));
+            c1.getCard().fitHeightProperty().bind(pane.heightProperty().divide(6));
             imageList.remove(use);
             llist.remove(use);
             c1.getCard().setOnMouseClicked(e -> {
@@ -858,7 +928,7 @@ public class MainFile extends Application{
                 timeline.play();
 
             });
-            pane.add(c1.getCard(), i % 4, i / 4);
+            pane.add(c1.getCard(), i % 6, i / 6);
 
 
             map.put(String.format("%d", i), c1);
@@ -870,7 +940,7 @@ public class MainFile extends Application{
         pane.setVgap(2);
 
 
-        Scene scene = new Scene(pane, 400, 400);
+        Scene scene = new Scene(pane, 600, 600);
         s.setScene(scene);
         s.setTitle("Big Matching");
         s.show();
@@ -879,8 +949,8 @@ public class MainFile extends Application{
     }
 
     private void pushImageBig(CardClass c1, HashMap<String, CardClass> map, Pane pane, Stage s){
-        for (int f = 0; f < 15; f++) {
-            for (int j = f + 1; j < 16; j++) {
+        for (int f = 0; f < 35; f++) {
+            for (int j = f + 1; j < 36; j++) {
                 if (map.get(String.format("%d", f)).bothUp(map.get(String.format("%d", j)))) {
                     if (map.get(String.format("%d", f)).sameCard(map.get(String.format("%d", j)))) {
                         map.get(String.format("%d", f)).setFaceUp(false);
@@ -897,7 +967,7 @@ public class MainFile extends Application{
                 }
             }
         }
-        if (count2>= 16){
+        if (count2>= 36){
             Stage tempp = new Stage();
             Pane pp = new Pane();
             Text text = new Text("You");
