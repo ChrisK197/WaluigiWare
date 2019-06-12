@@ -119,7 +119,7 @@ public class MainFile extends Application{
         selectPane.add(b6, 2, 1);
         b6.setOnMouseClicked(e -> {
             count2 = 0;
-            bigMatching(new Stage());
+            bigMatchingRules(new Stage());
         });
 
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
@@ -1075,6 +1075,35 @@ public class MainFile extends Application{
         Scene scene = new Scene(pane, 246, 400);
         s.setScene(scene);
         //s.setTitle("Rules");
+        s.setTitle("Rules");
+        s.show();
+    }
+
+    private void bigMatchingRules(Stage s){
+        Pane pane = new Pane();
+        Button b = new Button("Start");
+        b.setOnMouseClicked(e -> {
+            bigMatching(new Stage());
+            s.hide();
+        });
+        pane.getChildren().add(b);
+        b.setLayoutX(60);
+        b.setLayoutY(300);
+
+        Text tt = new Text("It's matching");
+        tt.setFont(Font.font("Comic Sans", 30));
+        tt.setX(10);
+        tt.setY(70);
+        pane.getChildren().add(tt);
+
+        Text ttt = new Text("but big.");
+        ttt.setFont(Font.font("Comic Sans", 30));
+        ttt.setX(10);
+        ttt.setY(110);
+        pane.getChildren().add(ttt);
+
+        Scene scene = new Scene(pane, 246, 400);
+        s.setScene(scene);
         s.setTitle("Rules");
         s.show();
     }
