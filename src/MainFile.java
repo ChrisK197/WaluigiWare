@@ -41,6 +41,10 @@ public class MainFile extends Application{
     private Media sound = new Media(new File(musicFile).toURI().toString());
     private MediaPlayer mediaPlayer = new MediaPlayer(sound);
 
+    private String mF = "waluigi_wah.mp3";
+    private Media so = new Media(new File(mF).toURI().toString());
+    private MediaPlayer mP = new MediaPlayer(so);
+
     @Override
     public void start(Stage ps){
 
@@ -113,7 +117,7 @@ public class MainFile extends Application{
         mediaPlayer.setVolume(100);
         mediaPlayer.play();
 
-        Scene scene = new Scene(mainPane, 537, 284);
+        Scene scene = new Scene(mainPane, 537, 264);
         ps.setScene(scene);
         ps.setTitle("Waluigi Ware");
         ps.show();
@@ -162,10 +166,7 @@ public class MainFile extends Application{
             text.setFill(Color.RED);
             text.setFont(Font.font("Comic Sans", 72));
             pane.getChildren().add(text);
-            String mF = "waluigi_wah.mp3";
-            Media so = new Media(new File(mF).toURI().toString());
-            MediaPlayer mP = new MediaPlayer(so);
-            mP.setVolume(100);
+            mP.setVolume(500);
             mP.play();
             Button b = new Button("Return to select screen");
             b.setPrefSize(150, 10);
@@ -383,11 +384,14 @@ public class MainFile extends Application{
                 t.setY(100);
                 p.getChildren().add(imageView2);
                 p.getChildren().add(t);
-                String mF = "waluigi_wah.mp3";
-                Media so = new Media(new File(mF).toURI().toString());
-                MediaPlayer mP = new MediaPlayer(so);
-                mP.setVolume(100);
+                mP.setVolume(500);
                 mP.play();
+                Button b = new Button("Return to select screen");
+                b.setPrefSize(200, 10);
+                b.setLayoutX(750);
+                b.setLayoutY(350);
+                p.getChildren().add(b);
+                b.setOnMouseClicked(f -> ps.hide());
                 animation.stop();
             }
             circle.setCenterX(circle.getCenterX() + dx);
@@ -442,10 +446,7 @@ public class MainFile extends Application{
             text2.setFont(Font.font("Comic Sans", 72));
             pp.getChildren().add(text2);
 
-            String mF = "waluigi_wah.mp3";
-            Media so = new Media(new File(mF).toURI().toString());
-            MediaPlayer mP = new MediaPlayer(so);
-            mP.setVolume(100);
+            mP.setVolume(500);
             mP.play();
 
             Button bb = new Button("Return to menu");
@@ -559,10 +560,7 @@ public class MainFile extends Application{
                         gameOver.setX(500);
                         gameOver.setY(350);
                         String musicFile = "waluigi_wah.mp3";
-                        String mF = "waluigi_wah.mp3";
-                        Media so = new Media(new File(mF).toURI().toString());
-                        MediaPlayer mP = new MediaPlayer(so);
-                        mP.setVolume(100);
+                        mP.setVolume(500);
                         mP.play();
                     }
                 }
@@ -585,10 +583,7 @@ public class MainFile extends Application{
                             gameOver.setFont(Font.font("Comic Sans", 72));
                             gameOver.setX(500);
                             gameOver.setY(300);
-                            String mF = "waluigi_wah.mp3";
-                            Media so = new Media(new File(mF).toURI().toString());
-                            MediaPlayer mP = new MediaPlayer(so);
-                            mP.setVolume(100);
+                            mP.setVolume(500);
                             mP.play();
                         }
                     }
@@ -711,10 +706,7 @@ public class MainFile extends Application{
                         gameOver.setFont(Font.font("Comic Sans", 72));
                         gameOver.setX(500);
                         gameOver.setY(350);
-                        String mF = "waluigi_wah.mp3";
-                        Media so = new Media(new File(mF).toURI().toString());
-                        MediaPlayer mP = new MediaPlayer(so);
-                        mP.setVolume(100);
+                        mP.setVolume(500);
                         mP.play();
                     }
                 }
@@ -746,10 +738,7 @@ public class MainFile extends Application{
                             gameOver.setFont(Font.font("Comic Sans", 72));
                             gameOver.setX(500);
                             gameOver.setY(300);
-                            String mF = "waluigi_wah.mp3";
-                            Media so = new Media(new File(mF).toURI().toString());
-                            MediaPlayer mP = new MediaPlayer(so);
-                            mP.setVolume(100);
+                            mP.setVolume(500);
                             mP.play();
                         }
                     }
