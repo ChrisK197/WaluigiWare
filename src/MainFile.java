@@ -113,6 +113,15 @@ public class MainFile extends Application{
             countt = 0;
         });
 
+        Button b6 = new Button("Big Matching");
+        b6.setPrefSize(mainPane.getWidth()/4, 10);
+        b6.prefWidthProperty().bind(mainPane.widthProperty().divide(4));
+        selectPane.add(b6, 1, 1);
+        b6.setOnMouseClicked(e -> {
+            count2 = 0;
+            bigMatching(new Stage());
+        });
+
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.setVolume(100);
         mediaPlayer.play();
@@ -190,6 +199,7 @@ public class MainFile extends Application{
         s.show();
     }
     private int count = 0;
+    private int count2 = 0;
 
     private void memory(Stage s) {
         GridPane pane = new GridPane();
@@ -767,6 +777,160 @@ public class MainFile extends Application{
             }
         }.start();
         pane.requestFocus();
+    }
+
+    private void bigMatching(Stage s){
+        GridPane pane = new GridPane();
+        Image wah = new Image("Waluigi.png");
+        Image wah2 = new Image("Waluigi.png");
+
+        Image mario = new Image("mario.jpg");
+        Image mario2 = new Image("mario.jpg");
+
+        Image luigi = new Image("luigi.jpg");
+        Image luigi2 = new Image("luigi.jpg");
+
+        Image wario = new Image("wario.jpg");
+        Image wario2 = new Image("wario.jpg");
+
+        Image bowser = new Image("Bowser.png");
+        Image bowser2 = new Image("Bowser.png");
+
+        Image ctoad = new Image("ctoad.png");
+        Image ctoad2 = new Image("ctoad.png");
+
+        Image peach = new Image("peach.png");
+        Image peach2 = new Image("peach.png");
+
+        Image sonic = new Image("sonic.png");
+        Image sonic2 = new Image("sonic.png");
+
+        ArrayList<Image> imageList = new ArrayList<>();
+        imageList.add(wah);
+        imageList.add(wah2);
+        imageList.add(mario);
+        imageList.add(mario2);
+        imageList.add(luigi);
+        imageList.add(luigi2);
+        imageList.add(wario);
+        imageList.add(wario2);
+        imageList.add(bowser);
+        imageList.add(bowser2);
+        imageList.add(ctoad);
+        imageList.add(ctoad2);
+        imageList.add(peach);
+        imageList.add(peach2);
+        imageList.add(sonic);
+        imageList.add(sonic2);
+        ArrayList<String> llist = new ArrayList<>();
+        llist.add("0");
+        llist.add("0");
+        llist.add("1");
+        llist.add("1");
+        llist.add("2");
+        llist.add("2");
+        llist.add("3");
+        llist.add("3");
+        llist.add("4");
+        llist.add("4");
+        llist.add("5");
+        llist.add("5");
+        llist.add("6");
+        llist.add("6");
+        llist.add("7");
+        llist.add("7");
+        HashMap<String, CardClass> map = new HashMap<>();
+
+        for (int i = 0; i < 16; i++) {
+            int use = (int) (Math.random() * imageList.size());
+            String code = llist.get(use);
+            CardClass c1 = new CardClass(imageList.get(use), code);
+            c1.getCard().fitWidthProperty().bind(pane.widthProperty().divide(4));
+            c1.getCard().fitHeightProperty().bind(pane.heightProperty().divide(4));
+            imageList.remove(use);
+            llist.remove(use);
+            c1.getCard().setOnMouseClicked(e -> {
+                c1.getCard().setImage(c1.getFront());
+                c1.setFaceUp(true);
+                Timeline timeline = new Timeline(new KeyFrame(
+                        Duration.millis(500),
+                        ae -> pushImageBig(c1, map, pane, s)));
+                timeline.play();
+
+            });
+            pane.add(c1.getCard(), i % 4, i / 4);
+
+
+            map.put(String.format("%d", i), c1);
+
+        }
+
+        pane.setGridLinesVisible(true);
+        pane.setHgap(2);
+        pane.setVgap(2);
+
+
+        Scene scene = new Scene(pane, 400, 400);
+        s.setScene(scene);
+        s.setTitle("Big Matching");
+        s.show();
+
+        pane.requestFocus();
+    }
+
+    private void pushImageBig(CardClass c1, HashMap<String, CardClass> map, Pane pane, Stage s){
+        for (int f = 0; f < 15; f++) {
+            for (int j = f + 1; j < 16; j++) {
+                if (map.get(String.format("%d", f)).bothUp(map.get(String.format("%d", j)))) {
+                    if (map.get(String.format("%d", f)).sameCard(map.get(String.format("%d", j)))) {
+                        map.get(String.format("%d", f)).setFaceUp(false);
+                        map.get(String.format("%d", j)).setFaceUp(false);
+                        map.get(String.format("%d", f)).inactive();
+                        map.get(String.format("%d", j)).inactive();
+                        count2 += 2;
+                    } else {
+                        map.get(String.format("%d", f)).unflip();
+                        map.get(String.format("%d", j)).unflip();
+                        map.get(String.format("%d", f)).setFaceUp(false);
+                        map.get(String.format("%d", j)).setFaceUp(false);
+                    }
+                }
+            }
+        }
+        if (count2>= 16){
+            Stage tempp = new Stage();
+            Pane pp = new Pane();
+            Text text = new Text("You");
+            text.setX(60);
+            text.setY(100);
+            text.setFill(Color.RED);
+            text.setFont(Font.font("Comic Sans", 72));
+            pp.getChildren().add(text);
+
+            Text text2 = new Text("Win");
+            text2.setX(60);
+            text2.setY(200);
+            text2.setFill(Color.RED);
+            text2.setFont(Font.font("Comic Sans", 72));
+            pp.getChildren().add(text2);
+
+            mP.setVolume(100);
+            mP.play();
+
+            Button bb = new Button("Return to menu");
+            bb.setOnMouseClicked(e ->{
+                tempp.hide();
+                s.hide();
+            });
+            bb.setLayoutX(60);
+            bb.setLayoutY(250);
+            pp.getChildren().add(bb);
+
+            Scene sss = new Scene(pp, 300, 300);
+            tempp.setScene(sss);
+            tempp.setTitle("You Won");
+            tempp.show();
+        }
     }
 
     private void findGuyRules(Stage s){
