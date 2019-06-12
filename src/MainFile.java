@@ -689,11 +689,11 @@ public class MainFile extends Application{
         stage.show();
         new AnimationTimer(){
             public void handle(long currentNanoTime){
-                if (imageView.getY()!= pane.getHeight()-50){
-                    imageView.setY(pane.getHeight()-50);
+                if (imageView.getY()!= pane.getHeight()-pane.getHeight()/14){
+                    imageView.setY(pane.getHeight()-pane.getHeight()/14);
                 }
-                if(hitBox.getY()!= pane.getHeight()-50){
-                    hitBox.setY(pane.getHeight()-50);
+                if(hitBox.getY()!= pane.getHeight()-pane.getHeight()/14){
+                    hitBox.setY(pane.getHeight()-pane.getHeight()/14);
                 }
                 if (imageView.getX()+imageView.getFitWidth()>pane.getWidth()+15){
                     imageView.setX(pane.getWidth()/2);
